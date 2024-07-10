@@ -9,11 +9,27 @@ import (
 	"smlsynctobc/myclickhouse"
 	"smlsynctobc/myglobal"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/ClickHouse/clickhouse-go/v2"
 	_ "github.com/lib/pq"
 )
+
+type SyncResult struct {
+	FunctionName string
+	Duration     time.Duration
+	ItemCount    int
+}
+
+var results []SyncResult
+var resultMutex sync.Mutex
+
+func logResult(funcName string, duration time.Duration, count int) {
+	resultMutex.Lock()
+	defer resultMutex.Unlock()
+	results = append(results, SyncResult{funcName, duration, count})
+}
 
 // customDecodeHookFunc ปรับให้รองรับการแปลงวันที่แบบ ClickHouse
 func customDecodeHookFunc(f reflect.Type, t reflect.Type, data interface{}) (interface{}, error) {
@@ -67,8 +83,8 @@ func productBarcodeRebuildInsertToClickHouse(clickHouseConn clickhouse.Conn, cli
 }
 
 func productBarcodeRebuild(database myglobal.DatabaseModel) {
-	timeStart := time.Now()
-	fmt.Println(database.DatabaseName + " : productBarcodeRebuild Start " + timeStart.String())
+	start := time.Now()
+	log.Printf("▶ Start  ProductBarcode: %s", database.DatabaseName)
 
 	// ทำการเชื่อมต่อ PostgreSQL
 	connPostgreSqlStr := myglobal.GetPostgreSQLConnectionString(database.DatabaseName)
@@ -86,7 +102,7 @@ func productBarcodeRebuild(database myglobal.DatabaseModel) {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Successfully connected to the database!")
+	// fmt.Println("Successfully connected to the database!")
 
 	// ลบข้อมูลเก่า ออกจาก ClickHouse
 	clickHouseConn, _ := myclickhouse.Connect()
@@ -132,9 +148,10 @@ func productBarcodeRebuild(database myglobal.DatabaseModel) {
 	}
 
 	clickHouseConn.Close()
-	timeStop := time.Now()
-	timeDiffStr := timeStop.Sub(timeStart).String()
-	fmt.Println(database.DatabaseName + " : productBarcodeRebuild done : " + timeDiffStr)
+	duration := time.Since(start)
+	log.Printf("✓ Finish ProductBarcode: %s (%.2fs, %d items)",
+		database.DatabaseName, duration.Seconds(), count)
+	logResult("ProductBarcode", duration, count)
 }
 
 // หัวรายวัน
@@ -149,8 +166,9 @@ func transDocRebuildInsert(clickHouseConn clickhouse.Conn, clickHouseDoc *[]stri
 }
 
 func transDocRebuild(database myglobal.DatabaseModel) {
-	timeStart := time.Now()
-	fmt.Println(database.DatabaseName + " : transSaleInvoiceRebuild Start" + timeStart.String())
+	start := time.Now()
+	log.Printf("▶ Start  transDocRebuild: %s", database.DatabaseName)
+
 	clickHouseConn, _ := myclickhouse.Connect()
 	tableList := []string{"dedebi.doc"}
 	for _, table := range tableList {
@@ -178,7 +196,7 @@ func transDocRebuild(database myglobal.DatabaseModel) {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Successfully connected to the database!")
+	// fmt.Println("Successfully connected to the database!")
 
 	// ตัวอย่างการ query
 	icTransrows, err := db.Query("SELECT doc_date,doc_no,total_amount FROM ic_trans")
@@ -229,10 +247,12 @@ func transDocRebuild(database myglobal.DatabaseModel) {
 	if len(clickHouseDoc) > 0 {
 		transDocRebuildInsert(clickHouseConn, &clickHouseDoc)
 	}
+
 	clickHouseConn.Close()
-	timeStop := time.Now()
-	timeDiffStr := timeStop.Sub(timeStart).String()
-	fmt.Println("transSaleInvoiceRebuild done : " + timeDiffStr + " doc count : " + fmt.Sprintf("%d", count))
+	duration := time.Since(start)
+	log.Printf("✓ Finish transDocRebuild: %s (%.2fs, %d items)",
+		database.DatabaseName, duration.Seconds(), count)
+	logResult("transDocRebuild", duration, count)
 }
 
 // รายวันย่อย
@@ -247,8 +267,9 @@ func transDocDetailRebuildInsert(clickHouseConn clickhouse.Conn, clickHouseDocDe
 }
 
 func transDocDetailRebuild(database myglobal.DatabaseModel) {
-	timeStart := time.Now()
-	fmt.Println(database.DatabaseName + " : transDocDetailRebuild Start" + timeStart.String())
+	start := time.Now()
+	log.Printf("▶ Start  transDocDetailRebuild: %s", database.DatabaseName)
+
 	clickHouseConn, _ := myclickhouse.Connect()
 	tableList := []string{"dedebi.docdetail"}
 	for _, table := range tableList {
@@ -276,7 +297,7 @@ func transDocDetailRebuild(database myglobal.DatabaseModel) {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Successfully connected to the database!")
+	// fmt.Println("Successfully connected to the database!")
 
 	// ตัวอย่างการ query หลายบรรทัด
 	query := `
@@ -341,9 +362,10 @@ func transDocDetailRebuild(database myglobal.DatabaseModel) {
 		transDocDetailRebuildInsert(clickHouseConn, &clickHouseDocDetail)
 	}
 	clickHouseConn.Close()
-	timeStop := time.Now()
-	timeDiffStr := timeStop.Sub(timeStart).String()
-	fmt.Println("transDocDetailRebuild done : " + timeDiffStr + " doc count : " + fmt.Sprintf("%d", count))
+	duration := time.Since(start)
+	log.Printf("✓ Finish transDocDetailRebuild: %s (%.2fs, %d items)",
+		database.DatabaseName, duration.Seconds(), count)
+	logResult("transDocDetailRebuild", duration, count)
 }
 
 /// ======= sml  ======
@@ -351,7 +373,8 @@ func transDocDetailRebuild(database myglobal.DatabaseModel) {
 // / รายวันย่อย ic_trans_detail
 // รายวันย่อย
 
-func icTransDetailRebuildInsertToClikeHouse(clickHouseConn clickhouse.Conn, clickHouseDocDetail *[]string) {
+// icTransDetailRebuildInsertToClickHouse เพิ่มข้อมูลรายละเอียดการขายลงใน ClickHouse
+func icTransDetailRebuildInsertToClickHouse(ctx context.Context, clickHouseConn clickhouse.Conn, clickHouseDocDetail []string) error {
 	queryInsertDocDetail := `
 	INSERT INTO dedebi.ic_trans_detail (
 		doc_date, doc_time, doc_no, trans_flag, item_code, 
@@ -359,76 +382,70 @@ func icTransDetailRebuildInsertToClikeHouse(clickHouseConn clickhouse.Conn, clic
 		doc_ref, is_pos, stand_value, divide_value, qty, 
 		sum_of_cost, profit_lost_cost_amount, last_status, item_type, is_doc_copy, 
 		sum_amount, price, discount, ref_doc_no, item_code_main, 
-		ref_guid, set_ref_line , shopid
-	) VALUES ` + strings.Join(*clickHouseDocDetail, ",")
+		ref_guid, set_ref_line, shopid
+	) VALUES ` + strings.Join(clickHouseDocDetail, ",")
 
-	err := myclickhouse.ExecuteCommand(context.Background(), clickHouseConn, queryInsertDocDetail)
-	if err != nil {
-		log.Println("Error insert into ClickHouse : " + queryInsertDocDetail)
-		log.Fatal(err)
-	}
+	return myclickhouse.ExecuteCommand(ctx, clickHouseConn, queryInsertDocDetail)
 }
 
+// icTransDetailRebuild ย้ายข้อมูลรายละเอียดการขายจาก PostgreSQL ไปยัง ClickHouse
 func icTransDetailRebuild(database myglobal.DatabaseModel) {
-	timeStart := time.Now()
-	fmt.Println(database.DatabaseName + " : icTransDetailRebuild Start" + timeStart.String())
-	clickHouseConn, _ := myclickhouse.Connect()
-	tableList := []string{"dedebi.ic_trans_detail"}
-	for _, table := range tableList {
-		query := fmt.Sprintf("ALTER TABLE %s DELETE WHERE shopid = '%s'", table, database.ShopId)
-		err := myclickhouse.ExecuteCommand(context.Background(), clickHouseConn, query)
-		if err != nil {
-			log.Printf("Error truncating ClickHouse table %s: %v", table, err)
-			log.Fatal(err)
-		}
+	start := time.Now()
+	log.Printf("▶ Start  ic_trans_detail: %s", database.DatabaseName)
+
+	ctx := context.Background()
+
+	// เชื่อมต่อกับ ClickHouse
+	clickHouseConn, err := myclickhouse.Connect()
+	if err != nil {
+		log.Fatalf("Error connecting to ClickHouse: %v", err)
+	}
+	defer clickHouseConn.Close()
+
+	// ลบข้อมูลเก่าออกจาก ClickHouse
+	err = myclickhouse.ExecuteCommand(ctx, clickHouseConn, fmt.Sprintf("ALTER TABLE dedebi.ic_trans_detail DELETE WHERE shopid = '%s'", database.ShopId))
+	if err != nil {
+		log.Fatalf("Error truncating ClickHouse table: %v", err)
 	}
 
-	// ทำการเชื่อมต่อ PostgreSQL
-	connPostgreSqlStr := myglobal.GetPostgreSQLConnectionString(database.DatabaseName)
-
-	// เปิดการเชื่อมต่อ
-	db, err := sql.Open("postgres", connPostgreSqlStr)
+	// เชื่อมต่อกับ PostgreSQL
+	db, err := sql.Open("postgres", myglobal.GetPostgreSQLConnectionString(database.DatabaseName))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error connecting to PostgreSQL: %v", err)
 	}
 	defer db.Close()
 
-	// ทดสอบการเชื่อมต่อ
-	err = db.Ping()
-	if err != nil {
-		log.Fatal(err)
+	if err = db.Ping(); err != nil {
+		log.Fatalf("Error pinging PostgreSQL: %v", err)
 	}
 
-	fmt.Println("Successfully connected to the database!")
+	// log.Println("Successfully connected to the database!")
 
 	// ดึงข้อมูลจาก PostgreSQL
-	query := `
-	SELECT 
-		doc_date, doc_time, doc_no, trans_flag, item_code, 
-		unit_code, wh_code, shelf_code, calc_flag, inquiry_type, 
-		doc_ref, is_pos, stand_value, divide_value, qty, 
-		sum_of_cost, profit_lost_cost_amount, last_status, item_type, is_doc_copy, 
-		sum_amount, price, discount, ref_doc_no, item_code_main, 
-		ref_guid, set_ref_line
-	FROM 
-		ic_trans_detail
-	`
-
-	icTransrows, err := db.Query(query)
+	rows, err := db.Query(`
+		SELECT 
+			doc_date, doc_time, doc_no, trans_flag, item_code, 
+			unit_code, wh_code, shelf_code, calc_flag, inquiry_type, 
+			doc_ref, is_pos, stand_value, divide_value, qty, 
+			sum_of_cost, profit_lost_cost_amount, last_status, item_type, is_doc_copy, 
+			sum_amount, price, discount, ref_doc_no, item_code_main, 
+			ref_guid, set_ref_line
+		FROM 
+			ic_trans_detail
+	`)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error querying PostgreSQL: %v", err)
 	}
-	defer icTransrows.Close()
+	defer rows.Close()
 
-	// ประมวลผลข้อมูลที่ได้จาก query
 	count := 0
-	clickHouseDocDetail := []string{}
-	for icTransrows.Next() {
+	clickHouseDocDetail := make([]string, 0, 10000)
+	for rows.Next() {
 		var docDate, docTime, docNo, itemCode, unitCode, whCode, shelfCode, docRef, discount, refDocNo, itemCodeMain, refGuid, setRefLine sql.NullString
 		var transFlag, calcFlag, inquiryType, isPos, lastStatus, itemType, isDocCopy sql.NullInt32
 		var standValue, divideValue, qty, sumOfCost, profitLostCostAmount, sumAmount, price sql.NullFloat64
 
-		err = icTransrows.Scan(
+		err = rows.Scan(
 			&docDate, &docTime, &docNo, &transFlag, &itemCode,
 			&unitCode, &whCode, &shelfCode, &calcFlag, &inquiryType,
 			&docRef, &isPos, &standValue, &divideValue, &qty,
@@ -437,41 +454,12 @@ func icTransDetailRebuild(database myglobal.DatabaseModel) {
 			&refGuid, &setRefLine,
 		)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Error scanning row: %v", err)
 		}
 
 		// แปลงวันที่และเวลาให้เป็นรูปแบบที่ ClickHouse ยอมรับ
-		var docDateStr, docTimeStr string
-		if docDate.Valid {
-			// แปลงวันที่จากฟอร์แมต ISO 8601 เป็นฟอร์แมตที่ต้องการ
-			t, err := time.Parse(time.RFC3339[:10], docDate.String[:10])
-			if err != nil {
-				log.Printf("Error parsing date: %v", err)
-				continue
-			}
-			docDateStr = t.Format("2006-01-02")
-		} else {
-			docDateStr = "0000-00-00"
-		}
+		docDateStr, docTimeStr := myglobal.FormatDateTime(docDate, docTime)
 
-		if docTime.Valid {
-			// ใช้เวลาจาก docTime ถ้ามี
-			docTimeStr = docTime.String
-		} else {
-			// ถ้าไม่มี docTime ให้ใช้เวลาจาก docDate ถ้ามี
-			if docDate.Valid {
-				t, err := time.Parse(time.RFC3339, docDate.String)
-				if err != nil {
-					log.Printf("Error parsing time from date: %v", err)
-					docTimeStr = "00:00:00"
-				} else {
-					docTimeStr = t.Format("15:04:05")
-				}
-			} else {
-				docTimeStr = "00:00:00"
-			}
-		}
-		// เอกสาร
 		// สร้าง string สำหรับ insert โดยจัดการกับค่า NULL
 		clickHouseDocDetail = append(clickHouseDocDetail, fmt.Sprintf("('%s','%s','%s',%d,'%s','%s','%s','%s',%d,%d,'%s',%d,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d,%.2f,%.2f,'%s','%s','%s','%s','%s','%s')",
 			docDateStr,
@@ -503,125 +491,171 @@ func icTransDetailRebuild(database myglobal.DatabaseModel) {
 			myglobal.NullStringToString(setRefLine),
 			database.ShopId))
 
-		// แบบเก็บข้อมูลทุก 10000 รายการ
 		count++
-		if count%100000 == 0 {
-			fmt.Println("doc count : " + fmt.Sprintf("%d", count))
-			icTransDetailRebuildInsertToClikeHouse(clickHouseConn, &clickHouseDocDetail)
-			clickHouseDocDetail = []string{}
+		if count%10000 == 0 {
+			log.Printf("Inserting batch: %d records", count)
+			if err := icTransDetailRebuildInsertToClickHouse(ctx, clickHouseConn, clickHouseDocDetail); err != nil {
+				log.Fatalf("Error inserting batch into ClickHouse: %v", err)
+			}
+			clickHouseDocDetail = clickHouseDocDetail[:0]
 		}
 	}
 	if len(clickHouseDocDetail) > 0 {
-		icTransDetailRebuildInsertToClikeHouse(clickHouseConn, &clickHouseDocDetail)
+		if err := icTransDetailRebuildInsertToClickHouse(ctx, clickHouseConn, clickHouseDocDetail); err != nil {
+			log.Fatalf("Error inserting final batch into ClickHouse: %v", err)
+		}
 	}
-	clickHouseConn.Close()
-	timeStop := time.Now()
-	timeDiffStr := timeStop.Sub(timeStart).String()
-	fmt.Println("icTransDetailRebuild done : " + timeDiffStr + " doc count : " + fmt.Sprintf("%d", count))
+
+	duration := time.Since(start)
+	log.Printf("✓ Finish ic_trans_detail: %s (%.2fs, %d items)",
+		database.DatabaseName, duration.Seconds(), count)
+	logResult("ic_trans_detail", duration, count)
 }
 
-// / ข้อมูลสินค้า ic_inventory
 // icInventoryRebuildInsertToClickHouse เพิ่มข้อมูลสินค้าลงใน ClickHouse
-func icInventoryRebuildInsertToClickHouse(clickHouseConn clickhouse.Conn, clickHouseData []string) {
-	queryInsert := "INSERT INTO dedebi.ic_inventory (code, name_1, unit_cost, unit_standard ,item_type , shopid) VALUES " + strings.Join(clickHouseData, ",")
-	err := myclickhouse.ExecuteCommand(context.Background(), clickHouseConn, queryInsert)
-	if err != nil {
-		log.Println("Error insert into ClickHouse : " + queryInsert)
-		log.Fatal(err)
-	}
+func icInventoryRebuildInsertToClickHouse(ctx context.Context, clickHouseConn clickhouse.Conn, clickHouseData []string) error {
+	queryInsert := "INSERT INTO dedebi.ic_inventory (code, name_1, unit_cost, unit_standard, item_type, shopid) VALUES " + strings.Join(clickHouseData, ",")
+	return myclickhouse.ExecuteCommand(ctx, clickHouseConn, queryInsert)
 }
 
+// icInventoryRebuild ย้ายข้อมูลสินค้าจาก PostgreSQL ไปยัง ClickHouse
 func icInventoryRebuild(database myglobal.DatabaseModel) {
-	timeStart := time.Now()
-	fmt.Println(database.DatabaseName + " : icInventoryRebuild Start " + timeStart.String())
+	start := time.Now()
+	log.Printf("▶ Start  ic_inventory: %s", database.DatabaseName)
 
-	// ทำการเชื่อมต่อ PostgreSQL
-	connPostgreSqlStr := myglobal.GetPostgreSQLConnectionString(database.DatabaseName)
+	ctx := context.Background()
 
-	// เปิดการเชื่อมต่อ
-	db, err := sql.Open("postgres", connPostgreSqlStr)
+	// เชื่อมต่อกับ ClickHouse
+	clickHouseConn, err := myclickhouse.Connect()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error connecting to ClickHouse: %v", err)
+	}
+	defer clickHouseConn.Close()
+
+	// ลบข้อมูลเก่าออกจาก ClickHouse
+	err = myclickhouse.ExecuteCommand(ctx, clickHouseConn, fmt.Sprintf("ALTER TABLE dedebi.ic_inventory DELETE WHERE shopid = '%s'", database.ShopId))
+	if err != nil {
+		log.Fatalf("Error truncating ClickHouse table: %v", err)
+	}
+
+	// เชื่อมต่อกับ PostgreSQL
+	db, err := sql.Open("postgres", myglobal.GetPostgreSQLConnectionString(database.DatabaseName))
+	if err != nil {
+		log.Fatalf("Error connecting to PostgreSQL: %v", err)
 	}
 	defer db.Close()
 
-	// ทดสอบการเชื่อมต่อ
-	err = db.Ping()
-	if err != nil {
-		log.Fatal(err)
+	if err = db.Ping(); err != nil {
+		log.Fatalf("Error pinging PostgreSQL: %v", err)
 	}
 
-	fmt.Println("Successfully connected to the database!")
+	// log.Println("Successfully connected to the database!")
 
-	// ลบข้อมูลเก่า ออกจาก ClickHouse
-	clickHouseConn, _ := myclickhouse.Connect()
-	err = myclickhouse.ExecuteCommand(context.Background(), clickHouseConn, "alter table dedebi.ic_inventory delete where shopid = '"+database.ShopId+"'")
-	if err != nil {
-		log.Println("Error truncate ClickHouse")
-		log.Fatal(err)
-	}
-	clickHouseData := []string{}
-
-	// ตัวอย่างการ query
+	// ดึงข้อมูลจาก PostgreSQL
 	rows, err := db.Query("SELECT code, name_1, unit_cost, unit_standard, item_type FROM ic_inventory")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error querying PostgreSQL: %v", err)
 	}
 	defer rows.Close()
 
-	// ประมวลผลข้อมูลที่ได้จาก query
 	count := 0
+	clickHouseData := make([]string, 0, 10000)
 	for rows.Next() {
-		var code string
-		var name_1 string
-		var unit_cost string
-		var unit_standard string
-		var item_type int
-		err = rows.Scan(&code, &name_1, &unit_cost, &unit_standard, &item_type)
+		var code, name1, unitCost, unitStandard string
+		var itemType int
+		err = rows.Scan(&code, &name1, &unitCost, &unitStandard, &itemType)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Error scanning row: %v", err)
 		}
-		// Replace single quotes with two single quotes for SQL escaping
-		name_1 = strings.ReplaceAll(name_1, "'", "''")
 
-		clickHouseData = append(clickHouseData, "( '"+code+"', '"+name_1+"', '"+unit_cost+"' , '"+unit_standard+"' , 0, '"+database.ShopId+"')")
+		// Escape single quotes for SQL
+		name1 = strings.ReplaceAll(name1, "'", "''")
+
+		clickHouseData = append(clickHouseData, fmt.Sprintf("('%s','%s','%s','%s',%d,'%s')",
+			code, name1, unitCost, unitStandard, itemType, database.ShopId))
+
 		count++
 		if count%10000 == 0 {
-			icInventoryRebuildInsertToClickHouse(clickHouseConn, clickHouseData)
-			clickHouseData = []string{}
+			log.Printf("Inserting batch: %d records", count)
+			if err := icInventoryRebuildInsertToClickHouse(ctx, clickHouseConn, clickHouseData); err != nil {
+				log.Fatalf("Error inserting batch into ClickHouse: %v", err)
+			}
+			clickHouseData = clickHouseData[:0]
 		}
 	}
 	if len(clickHouseData) > 0 {
-		icInventoryRebuildInsertToClickHouse(clickHouseConn, clickHouseData)
+		if err := icInventoryRebuildInsertToClickHouse(ctx, clickHouseConn, clickHouseData); err != nil {
+			log.Fatalf("Error inserting final batch into ClickHouse: %v", err)
+		}
 	}
 
-	clickHouseConn.Close()
-	timeStop := time.Now()
-	timeDiffStr := timeStop.Sub(timeStart).String()
-	fmt.Println("icInventoryRebuild done : " + timeDiffStr + " item count : " + fmt.Sprintf("%d", count))
+	duration := time.Since(start)
+	log.Printf("✓ Finish ic_inventory: %s (%.2fs, %d items)",
+		database.DatabaseName, duration.Seconds(), count)
+	logResult("ic_inventory", duration, count)
 }
 
 func main() {
+	// บันทึกเวลาเริ่มต้นการทำงาน
 	timeStart := time.Now()
+	log.Printf("=== Start synchronization process ===")
 	log.Printf("Start Time: %s", timeStart)
 
+	// สร้าง WaitGroup เพื่อรอให้ goroutines ทั้งหมดทำงานเสร็จ
+	var wg sync.WaitGroup
+
+	// วนลูปผ่านทุกฐานข้อมูลใน DatabaseList
 	for _, database := range myglobal.DatabaseList {
+		// เพิ่มจำนวน goroutines ที่ต้องรอเป็น 5
+		wg.Add(5)
 
-		productBarcodeRebuild(database)
+		// สร้าง goroutine สำหรับ productBarcodeRebuild
+		go func(db myglobal.DatabaseModel) {
+			defer wg.Done()
+			productBarcodeRebuild(db)
+		}(database)
 
-		transDocRebuild(database)
+		// สร้าง goroutine สำหรับ transDocRebuild
+		go func(db myglobal.DatabaseModel) {
+			defer wg.Done()
+			transDocRebuild(db)
+		}(database)
 
-		transDocDetailRebuild(database)
+		// สร้าง goroutine สำหรับ transDocDetailRebuild
+		go func(db myglobal.DatabaseModel) {
+			defer wg.Done()
+			transDocDetailRebuild(db)
+		}(database)
 
-		// === stock sml ===
-		icInventoryRebuild(database)
+		/// ========= stock sml ==========
 
-		icTransDetailRebuild(database)
-
+		go func(db myglobal.DatabaseModel) {
+			defer wg.Done()
+			icInventoryRebuild(db)
+		}(database)
+		go func(db myglobal.DatabaseModel) {
+			defer wg.Done()
+			icTransDetailRebuild(db)
+		}(database)
 	}
 
-	timeStop := time.Now()
-	log.Printf("End Time: %s", timeStop)
-	log.Printf("Total Time: %s", timeStop.Sub(timeStart))
+	// รอให้ goroutines ทั้งหมดทำงานเสร็จ
+	wg.Wait()
+
+	// บันทึกเวลาสิ้นสุดการทำงาน
+	log.Printf("=== Sync Process Completed ===")
+	log.Printf("Total Time: %.2f seconds", time.Since(timeStart).Seconds())
+
+	// แสดงสรุปจำนวนข้อมูล
+	log.Println("=== Summary ===")
+	var totalItems int
+	for _, result := range results {
+		log.Printf("%-20s: %6d items, %.2f seconds",
+			result.FunctionName, result.ItemCount, result.Duration.Seconds())
+		totalItems += result.ItemCount
+	}
+	log.Printf("%-20s: %6d items", "Total", totalItems)
+	/// log end time
+	log.Printf("End Time: %s", time.Now())
 
 }

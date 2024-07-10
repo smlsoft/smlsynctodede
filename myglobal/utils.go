@@ -5,6 +5,8 @@ import (
 	"database/sql"
 	"encoding/hex"
 	"fmt"
+	"log"
+	"time"
 )
 
 var ShopId = "2QoilMQkX9i6vtAE88ilEubnrhz"
@@ -81,4 +83,44 @@ func NullFloat64ToFloat(f sql.NullFloat64) float64 {
 		return f.Float64
 	}
 	return 0.00
+}
+
+// FormatDateTime แปลงค่า docDate และ docTime จาก sql.NullString เป็นรูปแบบที่เหมาะสมสำหรับ ClickHouse
+func FormatDateTime(docDate, docTime sql.NullString) (string, string) {
+	var docDateStr, docTimeStr string
+
+	// จัดการกับวันที่
+	if docDate.Valid {
+		// แปลงวันที่จากฟอร์แมต ISO 8601 เป็นฟอร์แมตที่ต้องการ
+		t, err := time.Parse(time.RFC3339[:10], docDate.String[:10])
+		if err != nil {
+			log.Printf("Error parsing date: %v", err)
+			docDateStr = "0000-00-00"
+		} else {
+			docDateStr = t.Format("2006-01-02")
+		}
+	} else {
+		docDateStr = "0000-00-00"
+	}
+
+	// จัดการกับเวลา
+	if docTime.Valid {
+		// ใช้เวลาจาก docTime ถ้ามี
+		docTimeStr = docTime.String
+	} else {
+		// ถ้าไม่มี docTime ให้ใช้เวลาจาก docDate ถ้ามี
+		if docDate.Valid {
+			t, err := time.Parse(time.RFC3339, docDate.String)
+			if err != nil {
+				log.Printf("Error parsing time from date: %v", err)
+				docTimeStr = "00:00:00"
+			} else {
+				docTimeStr = t.Format("15:04:05")
+			}
+		} else {
+			docTimeStr = "00:00:00"
+		}
+	}
+
+	return docDateStr, docTimeStr
 }
