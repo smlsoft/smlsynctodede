@@ -16,7 +16,9 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// SyncResult เก็บผลลัพธ์การทำงานของแต่ละฟังก์ชัน
 type SyncResult struct {
+	DatabaseName string
 	FunctionName string
 	Duration     time.Duration
 	ItemCount    int
@@ -25,10 +27,16 @@ type SyncResult struct {
 var results []SyncResult
 var resultMutex sync.Mutex
 
-func logResult(funcName string, duration time.Duration, count int) {
+// logResult บันทึกผลลัพธ์การทำงานของฟังก์ชัน
+func logResult(dbName, funcName string, duration time.Duration, count int) {
 	resultMutex.Lock()
 	defer resultMutex.Unlock()
-	results = append(results, SyncResult{funcName, duration, count})
+	results = append(results, SyncResult{
+		DatabaseName: dbName,
+		FunctionName: funcName,
+		Duration:     duration,
+		ItemCount:    count,
+	})
 }
 
 // customDecodeHookFunc ปรับให้รองรับการแปลงวันที่แบบ ClickHouse
@@ -151,7 +159,7 @@ func productBarcodeRebuild(database myglobal.DatabaseModel) {
 	duration := time.Since(start)
 	log.Printf("✓ Finish ProductBarcode: %s (%.2fs, %d items)",
 		database.DatabaseName, duration.Seconds(), count)
-	logResult("ProductBarcode", duration, count)
+	logResult(database.DatabaseName, "ProductBarcode", duration, count)
 }
 
 // หัวรายวัน
@@ -252,7 +260,7 @@ func transDocRebuild(database myglobal.DatabaseModel) {
 	duration := time.Since(start)
 	log.Printf("✓ Finish transDocRebuild: %s (%.2fs, %d items)",
 		database.DatabaseName, duration.Seconds(), count)
-	logResult("transDocRebuild", duration, count)
+	logResult(database.DatabaseName, "transDocRebuild", duration, count)
 }
 
 // รายวันย่อย
@@ -365,10 +373,102 @@ func transDocDetailRebuild(database myglobal.DatabaseModel) {
 	duration := time.Since(start)
 	log.Printf("✓ Finish transDocDetailRebuild: %s (%.2fs, %d items)",
 		database.DatabaseName, duration.Seconds(), count)
-	logResult("transDocDetailRebuild", duration, count)
+	logResult(database.DatabaseName, "transDocDetailRebuild", duration, count)
 }
 
 /// ======= sml  ======
+// หัวรายวัน
+
+func icTransRebuildInsertToClickHouse(clickHouseConn clickhouse.Conn, clickHouseDoc *[]string) {
+	queryInsert := "INSERT INTO dedebi.ic_trans (doc_date,doc_time,doc_no,trans_flag,shopid) VALUES " + strings.Join(*clickHouseDoc, ",")
+	err := myclickhouse.ExecuteCommand(context.Background(), clickHouseConn, queryInsert)
+	if err != nil {
+		log.Println("Error insert into ClickHouse : " + queryInsert)
+		log.Fatal(err)
+	}
+}
+
+func icTransRebuild(database myglobal.DatabaseModel) {
+	start := time.Now()
+	log.Printf("▶ Start  ic_trans: %s", database.DatabaseName)
+
+	clickHouseConn, _ := myclickhouse.Connect()
+	tableList := []string{"dedebi.ic_trans"}
+	for _, table := range tableList {
+		query := fmt.Sprintf("ALTER TABLE %s DELETE WHERE shopid = '%s'", table, database.ShopId)
+		err := myclickhouse.ExecuteCommand(context.Background(), clickHouseConn, query)
+		if err != nil {
+			log.Printf("Error truncating ClickHouse table %s: %v", table, err)
+			log.Fatal(err)
+		}
+	}
+
+	// ทำการเชื่อมต่อ PostgreSQL
+	connPostgreSqlStr := myglobal.GetPostgreSQLConnectionString(database.DatabaseName)
+
+	// เปิดการเชื่อมต่อ
+	db, err := sql.Open("postgres", connPostgreSqlStr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	// ทดสอบการเชื่อมต่อ
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// fmt.Println("Successfully connected to the database!")
+
+	// ตัวอย่างการ query
+	icTransrows, err := db.Query("SELECT doc_date,doc_time,doc_no,trans_flag FROM ic_trans")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer icTransrows.Close()
+
+	// ประมวลผลข้อมูลที่ได้จาก query
+	count := 0
+	clickHouseDoc := []string{}
+	for icTransrows.Next() {
+		var docDate, docTime, docNo sql.NullString
+		var transFlag sql.NullInt32
+
+		err = icTransrows.Scan(&docDate, &docTime, &docNo, &transFlag)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		// แปลงวันที่และเวลาให้เป็นรูปแบบที่ ClickHouse ยอมรับ
+		docDateStr, docTimeStr := myglobal.FormatDateTime(docDate, docTime)
+
+		// เอกสาร
+		clickHouseDoc = append(clickHouseDoc, fmt.Sprintf("('%s','%s','%s',%d,'%s')",
+			docDateStr,
+			docTimeStr,
+			myglobal.NullStringToString(docNo),
+			myglobal.NullInt32ToInt(transFlag),
+			database.ShopId))
+
+		// แบบเก็บข้อมูลทุก 10000 รายการ
+		count++
+		if count%10000 == 0 {
+			fmt.Println("doc count : " + fmt.Sprintf("%d", count))
+			icTransRebuildInsertToClickHouse(clickHouseConn, &clickHouseDoc)
+			clickHouseDoc = []string{}
+		}
+	}
+	if len(clickHouseDoc) > 0 {
+		icTransRebuildInsertToClickHouse(clickHouseConn, &clickHouseDoc)
+	}
+
+	clickHouseConn.Close()
+	duration := time.Since(start)
+	log.Printf("✓ Finish icTransRebuild: %s (%.2fs, %d items)",
+		database.DatabaseName, duration.Seconds(), count)
+	logResult(database.DatabaseName, "ic_trans", duration, count)
+}
 
 // / รายวันย่อย ic_trans_detail
 // รายวันย่อย
@@ -509,7 +609,7 @@ func icTransDetailRebuild(database myglobal.DatabaseModel) {
 	duration := time.Since(start)
 	log.Printf("✓ Finish ic_trans_detail: %s (%.2fs, %d items)",
 		database.DatabaseName, duration.Seconds(), count)
-	logResult("ic_trans_detail", duration, count)
+	logResult(database.DatabaseName, "ic_trans_detail", duration, count)
 }
 
 // icInventoryRebuildInsertToClickHouse เพิ่มข้อมูลสินค้าลงใน ClickHouse
@@ -592,47 +692,53 @@ func icInventoryRebuild(database myglobal.DatabaseModel) {
 	duration := time.Since(start)
 	log.Printf("✓ Finish ic_inventory: %s (%.2fs, %d items)",
 		database.DatabaseName, duration.Seconds(), count)
-	logResult("ic_inventory", duration, count)
+	logResult(database.DatabaseName, "ic_inventory", duration, count)
 }
 
 func main() {
+
 	// บันทึกเวลาเริ่มต้นการทำงาน
 	timeStart := time.Now()
-	log.Printf("=== Start synchronization process ===")
-	log.Printf("Start Time: %s", timeStart)
+	log.Printf("%s=== Start synchronization process ===%s", myglobal.ColorGreen, myglobal.ColorReset)
+	log.Printf("Start Time: %s%s%s", myglobal.ColorCyan, timeStart.Format("2006-01-02 15:04:05.00"), myglobal.ColorReset)
 
 	// สร้าง WaitGroup เพื่อรอให้ goroutines ทั้งหมดทำงานเสร็จ
 	var wg sync.WaitGroup
 
+	// สร้าง slice เพื่อเก็บผลลัพธ์การทำงานของแต่ละฟังก์ชัน
+	results = make([]SyncResult, 0) // ตรวจสอบว่า results เป็น global variable
+
 	// วนลูปผ่านทุกฐานข้อมูลใน DatabaseList
 	for _, database := range myglobal.DatabaseList {
-		// เพิ่มจำนวน goroutines ที่ต้องรอเป็น 5
-		wg.Add(5)
+		// เพิ่มจำนวน goroutines ที่ต้องรอเป็น 6 (ตามจำนวนฟังก์ชันที่จะทำงาน)
+		wg.Add(6)
 
-		// สร้าง goroutine สำหรับ productBarcodeRebuild
+		// สร้าง goroutine สำหรับแต่ละฟังก์ชัน
 		go func(db myglobal.DatabaseModel) {
 			defer wg.Done()
 			productBarcodeRebuild(db)
 		}(database)
 
-		// สร้าง goroutine สำหรับ transDocRebuild
 		go func(db myglobal.DatabaseModel) {
 			defer wg.Done()
 			transDocRebuild(db)
 		}(database)
 
-		// สร้าง goroutine สำหรับ transDocDetailRebuild
 		go func(db myglobal.DatabaseModel) {
 			defer wg.Done()
 			transDocDetailRebuild(db)
 		}(database)
 
-		/// ========= stock sml ==========
-
 		go func(db myglobal.DatabaseModel) {
 			defer wg.Done()
 			icInventoryRebuild(db)
 		}(database)
+
+		go func(db myglobal.DatabaseModel) {
+			defer wg.Done()
+			icTransRebuild(db)
+		}(database)
+
 		go func(db myglobal.DatabaseModel) {
 			defer wg.Done()
 			icTransDetailRebuild(db)
@@ -643,19 +749,45 @@ func main() {
 	wg.Wait()
 
 	// บันทึกเวลาสิ้นสุดการทำงาน
-	log.Printf("=== Sync Process Completed ===")
-	log.Printf("Total Time: %.2f seconds", time.Since(timeStart).Seconds())
+	timeStop := time.Now()
+	log.Printf("%s=== Synchronization process completed ===%s", myglobal.ColorGreen, myglobal.ColorReset)
+	log.Printf("Total Time: %s%.2f seconds%s", myglobal.ColorYellow, timeStop.Sub(timeStart).Seconds(), myglobal.ColorReset)
 
-	// แสดงสรุปจำนวนข้อมูล
-	log.Println("=== Summary ===")
+	// แสดงสรุปผลการทำงาน
+	log.Printf("%s=== Summary ===%s", myglobal.ColorPurple, myglobal.ColorReset)
+
+	// สร้าง map เพื่อจัดกลุ่มผลลัพธ์ตาม database
+	summaryByDB := make(map[string]map[string]SyncResult)
 	var totalItems int
+
+	// จัดกลุ่มผลลัพธ์ตาม database และฟังก์ชัน
 	for _, result := range results {
-		log.Printf("%-20s: %6d items, %.2f seconds",
-			result.FunctionName, result.ItemCount, result.Duration.Seconds())
+		if _, exists := summaryByDB[result.DatabaseName]; !exists {
+			summaryByDB[result.DatabaseName] = make(map[string]SyncResult)
+		}
+		summaryByDB[result.DatabaseName][result.FunctionName] = result
 		totalItems += result.ItemCount
 	}
-	log.Printf("%-20s: %6d items", "Total", totalItems)
-	/// log end time
-	log.Printf("End Time: %s", time.Now())
 
+	// แสดงผลสรุปแยกตาม database
+	for dbName, dbResults := range summaryByDB {
+		log.Printf("%sDatabase: %s%s", myglobal.ColorBlue, dbName, myglobal.ColorReset)
+		var dbTotalItems int
+		var dbTotalTime float64
+		for _, result := range dbResults {
+			log.Printf("  %-20s: %8d items, %7.2f seconds",
+				result.FunctionName, result.ItemCount, result.Duration.Seconds())
+			dbTotalItems += result.ItemCount
+			dbTotalTime += result.Duration.Seconds()
+		}
+		// แสดงผลรวมของแต่ละ database
+		log.Printf("%s  %-20s: %8d items, %7.2f seconds%s\n",
+			myglobal.ColorYellow, "DB Total", dbTotalItems, dbTotalTime, myglobal.ColorReset)
+	}
+
+	// แสดงผลรวมทั้งหมดและข้อมูลเวลาการทำงาน
+	log.Printf("%sOverall Total      : %8d items%s", myglobal.ColorRed, totalItems, myglobal.ColorReset)
+	log.Printf("Start Time         : %s%s%s", myglobal.ColorCyan, timeStart.Format("2006-01-02 15:04:05.00"), myglobal.ColorReset)
+	log.Printf("End Time           : %s%s%s", myglobal.ColorCyan, timeStop.Format("2006-01-02 15:04:05.00"), myglobal.ColorReset)
+	log.Printf("%sTotal Process Time : %.2f seconds%s", myglobal.ColorRed, timeStop.Sub(timeStart).Seconds(), myglobal.ColorReset)
 }
