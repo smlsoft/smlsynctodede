@@ -1,0 +1,820 @@
+2024/07/19 11:47:30 [32m=== Start synchronization process ===[0m
+2024/07/19 11:47:30 Start Time: [36m2024-07-19 11:47:30.99[0m
+2024/07/19 11:47:30 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 11:47:31 [31m✗ Failure Sync Table ap_supplier: API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:47:31 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 11:47:31 [31m✗ Failure Sync Table ar_customer: API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:47:31 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 11:47:31 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 11:47:31 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 11:47:31 inventory: {"barcode":"3550742418542","itemunitcode":"ใบ","itemunitnames":[{"code":"th","name":"ใบ","isauto":false,"isdelete":false}],"itemtype":0,"foodtype":0,"taxtype":0,"issumpoint":false,"itemcode":"000 835 27 74","names":[{"code":"th","name":"COIL OEM BENZ SPINTER CDI (คอยาว)","isauto":false,"isdelete":false}],"groupcode":"","groupnames":[{"code":"th","name":"","isauto":false,"isdelete":false}],"prices":[{"keynumber":1,"price":4500},{"keynumber":2,"price":0}]}
+2024/07/19 11:47:31 inventory: {"barcode":"5186751211898","itemunitcode":"ตัว","itemunitnames":[{"code":"th","name":"ตัว","isauto":false,"isdelete":false}],"itemtype":0,"foodtype":0,"taxtype":0,"issumpoint":false,"itemcode":"0008210792","names":[{"code":"th","name":"รีซิสแตนซ์ BENZ VITO 2003 หลัง แท้","isauto":false,"isdelete":false}],"groupcode":"","groupnames":[{"code":"th","name":"","isauto":false,"isdelete":false}],"prices":[{"keynumber":1,"price":3000},{"keynumber":2,"price":0}]}
+2024/07/19 11:47:31 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 11:47:31 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:47:36 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:47:41 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 [32m=== Start synchronization process ===[0m
+2024/07/19 11:55:28 Start Time: [36m2024-07-19 11:55:28.32[0m
+2024/07/19 11:55:28 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 11:55:28 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 11:55:28 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 11:55:28 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ap_supplier (batch 1-50): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ap_supplier (batch 51-100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ap_supplier (batch 101-150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ap_supplier (batch 151-165): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 Step 4: Sent all data to API (0.01 minutes)
+2024/07/19 11:55:28 [32m✓ Sync Table ap_supplier: data03 (0s, 165 items)[0m
+2024/07/19 11:55:28 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 11:55:28 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 11:55:28 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 11:55:28 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ar_customer (batch 1-50): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ar_customer (batch 51-100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ar_customer (batch 101-150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:28 [31m✗ Error sending data to API for table ar_customer (batch 151-200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 201-250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 251-300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 301-350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 351-400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 401-450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 451-500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 501-550): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 551-600): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 601-650): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 651-700): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 701-750): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 751-800): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 801-850): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 851-900): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 901-950): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 951-1000): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1001-1050): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1051-1100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1101-1150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1151-1200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1201-1250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1251-1300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1301-1350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1351-1400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:29 [31m✗ Error sending data to API for table ar_customer (batch 1401-1450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1451-1500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1501-1550): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1551-1600): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1601-1650): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1651-1700): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1701-1750): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1751-1800): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1801-1850): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1851-1900): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1901-1950): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 1951-2000): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2001-2050): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2051-2100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2101-2150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2151-2200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2201-2250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2251-2300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2301-2350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2351-2400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2401-2450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2451-2500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2501-2550): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2551-2600): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:30 [31m✗ Error sending data to API for table ar_customer (batch 2601-2650): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 2651-2700): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 2701-2750): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 2751-2800): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 2801-2850): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 2851-2900): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 2901-2950): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 2951-3000): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3001-3050): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3051-3100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3101-3150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3151-3200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3201-3250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3251-3300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3301-3350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3351-3400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3401-3450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3451-3500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ar_customer (batch 3501-3534): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 Step 4: Sent all data to API (0.05 minutes)
+2024/07/19 11:55:31 [32m✓ Sync Table ar_customer: data03 (3s, 3534 items)[0m
+2024/07/19 11:55:31 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 11:55:31 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 11:55:31 Step 2: Queried data from PostgreSQL (0.21 seconds)
+2024/07/19 11:55:31 inventory: {"barcode":"3550742418542","itemunitcode":"ใบ","itemunitnames":[{"code":"th","name":"ใบ","isauto":false,"isdelete":false}],"itemtype":0,"foodtype":0,"taxtype":0,"issumpoint":false,"itemcode":"000 835 27 74","names":[{"code":"th","name":"COIL OEM BENZ SPINTER CDI (คอยาว)","isauto":false,"isdelete":false}],"groupcode":"","groupnames":[{"code":"th","name":"","isauto":false,"isdelete":false}],"prices":[{"keynumber":1,"price":4500},{"keynumber":2,"price":0}]}
+2024/07/19 11:55:31 inventory: {"barcode":"5186751211898","itemunitcode":"ตัว","itemunitnames":[{"code":"th","name":"ตัว","isauto":false,"isdelete":false}],"itemtype":0,"foodtype":0,"taxtype":0,"issumpoint":false,"itemcode":"0008210792","names":[{"code":"th","name":"รีซิสแตนซ์ BENZ VITO 2003 หลัง แท้","isauto":false,"isdelete":false}],"groupcode":"","groupnames":[{"code":"th","name":"","isauto":false,"isdelete":false}],"prices":[{"keynumber":1,"price":3000},{"keynumber":2,"price":0}]}
+2024/07/19 11:55:31 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 11:55:31 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:55:31 Step 4: Sent all data to API (0.00 minutes)
+2024/07/19 11:55:31 [32m✓ Sync Table ic_inventory: data03 (0s, 2 items)[0m
+2024/07/19 11:55:31 [32m=== Synchronization process completed ===[0m
+2024/07/19 11:55:31 Total Time: [33m3.64 seconds[0m
+2024/07/19 11:55:31 [35m=== Summary ===[0m
+2024/07/19 11:55:31 [34mDatabase: data03[0m
+2024/07/19 11:55:31   Sync ap_supplier ToMongoDB    :      165 items, 0s
+2024/07/19 11:55:31   Sync ar_customer ToMongoDB    :     3534 items, 3s
+2024/07/19 11:55:31   Sync ic_inventory ToMongoDB   :        2 items, 0s
+2024/07/19 11:55:31 [33m  DB Total                      :     3701 items, 3s[0m
+2024/07/19 11:55:31 [31mOverall Total      :     3701 items[0m
+2024/07/19 11:55:31 Start Time         : [36m2024-07-19 11:55:28.32[0m
+2024/07/19 11:55:31 End Time           : [36m2024-07-19 11:55:31.96[0m
+2024/07/19 11:55:31 [31mTotal Process Time : 4s[0m
+2024/07/19 11:57:58 [32m=== Start synchronization process ===[0m
+2024/07/19 11:57:58 Start Time: [36m2024-07-19 11:57:58.01[0m
+2024/07/19 11:57:58 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 11:57:58 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 11:57:58 Step 2: Queried data from PostgreSQL (0.04 seconds)
+2024/07/19 11:57:58 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 11:57:58 [31m✗ Error sending data to API for table ap_supplier (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:57:58 Step 4: Sent all data to API (0.00 minutes)
+2024/07/19 11:57:58 [32m✓ Sync Table ap_supplier: data03 (0s, 2 items)[0m
+2024/07/19 11:57:58 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 11:57:58 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 11:57:58 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 11:57:58 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 11:57:58 [31m✗ Error sending data to API for table ar_customer (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:57:58 Step 4: Sent all data to API (0.00 minutes)
+2024/07/19 11:57:58 [32m✓ Sync Table ar_customer: data03 (0s, 2 items)[0m
+2024/07/19 11:57:58 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 11:57:58 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 11:57:58 Step 2: Queried data from PostgreSQL (0.09 seconds)
+2024/07/19 11:57:58 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 11:57:58 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 11:57:58 Step 4: Sent all data to API (0.00 minutes)
+2024/07/19 11:57:58 [32m✓ Sync Table ic_inventory: data03 (0s, 2 items)[0m
+2024/07/19 11:57:58 [32m=== Synchronization process completed ===[0m
+2024/07/19 11:57:58 Total Time: [33m0.40 seconds[0m
+2024/07/19 11:57:58 [35m=== Summary ===[0m
+2024/07/19 11:57:58 [34mDatabase: data03[0m
+2024/07/19 11:57:58   Sync ap_supplier ToMongoDB    :        2 items, 0s
+2024/07/19 11:57:58   Sync ar_customer ToMongoDB    :        2 items, 0s
+2024/07/19 11:57:58   Sync ic_inventory ToMongoDB   :        2 items, 0s
+2024/07/19 11:57:58 [33m  DB Total                      :        6 items, 0s[0m
+2024/07/19 11:57:58 [31mOverall Total      :        6 items[0m
+2024/07/19 11:57:58 Start Time         : [36m2024-07-19 11:57:58.01[0m
+2024/07/19 11:57:58 End Time           : [36m2024-07-19 11:57:58.40[0m
+2024/07/19 11:57:58 [31mTotal Process Time : 0s[0m
+2024/07/19 12:06:24 [32m=== Start synchronization process ===[0m
+2024/07/19 12:06:24 Start Time: [36m2024-07-19 12:06:24.14[0m
+2024/07/19 12:06:24 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 12:06:24 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:06:24 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 12:06:24 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ap_supplier (batch 1-50): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ap_supplier (batch 51-100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ap_supplier (batch 101-150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ap_supplier (batch 151-165): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 Step 4: Sent all data to API (0.38 seconds)
+2024/07/19 12:06:24 [32m✓ Sync Table ap_supplier: data03 (0s, 165 items)[0m
+2024/07/19 12:06:24 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 12:06:24 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:06:24 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 12:06:24 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 1-50): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 51-100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 101-150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 151-200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 201-250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 251-300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 301-350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 351-400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:24 [31m✗ Error sending data to API for table ar_customer (batch 401-450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 451-500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 501-550): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 551-600): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 601-650): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 651-700): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 701-750): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 751-800): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 801-850): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 851-900): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 901-950): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 951-1000): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1001-1050): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1051-1100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1101-1150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1151-1200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1201-1250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1251-1300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1301-1350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1351-1400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1401-1450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1451-1500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1501-1550): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1551-1600): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1601-1650): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:25 [31m✗ Error sending data to API for table ar_customer (batch 1651-1700): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 1701-1750): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 1751-1800): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 1801-1850): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 1851-1900): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 1901-1950): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 1951-2000): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2001-2050): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2051-2100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2101-2150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2151-2200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2201-2250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2251-2300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2301-2350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2351-2400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2401-2450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2451-2500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2501-2550): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2551-2600): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2601-2650): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2651-2700): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2701-2750): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2751-2800): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2801-2850): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2851-2900): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:26 [31m✗ Error sending data to API for table ar_customer (batch 2901-2950): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 2951-3000): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3001-3050): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3051-3100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3101-3150): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3151-3200): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3201-3250): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3251-3300): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3301-3350): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3351-3400): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3401-3450): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3451-3500): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ar_customer (batch 3501-3534): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 Step 4: Sent all data to API (2.84 seconds)
+2024/07/19 12:06:27 [32m✓ Sync Table ar_customer: data03 (3s, 3534 items)[0m
+2024/07/19 12:06:27 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 12:06:27 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:06:27 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 12:06:27 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 12:06:27 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:06:27 Step 4: Sent all data to API (0.04 seconds)
+2024/07/19 12:06:27 [32m✓ Sync Table ic_inventory: data03 (0s, 2 items)[0m
+2024/07/19 12:06:27 [32m=== Synchronization process completed ===[0m
+2024/07/19 12:06:27 Total Time: [33m3.44 seconds[0m
+2024/07/19 12:06:27 [35m=== Summary ===[0m
+2024/07/19 12:06:27 [31mOverall Total      :        0 items[0m
+2024/07/19 12:06:27 Start Time         : [36m2024-07-19 12:06:24.14[0m
+2024/07/19 12:06:27 End Time           : [36m2024-07-19 12:06:27.58[0m
+2024/07/19 12:06:27 [31mTotal Process Time : 3s[0m
+2024/07/19 12:10:10 [32m=== Start synchronization process ===[0m
+2024/07/19 12:10:10 Start Time: [36m2024-07-19 12:10:10.90[0m
+2024/07/19 12:10:10 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 12:10:10 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:10:11 Step 2: Queried data from PostgreSQL (0.12 seconds)
+2024/07/19 12:10:11 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 12:10:11 [31m✗ Error sending data to API for table ic_inventory (batch 1-50): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:10:11 [31m✗ Error sending data to API for table ic_inventory (batch 51-100): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:10:11 Step 4: Sent all data to API (0.24 seconds)
+2024/07/19 12:10:11 [32m✓ Sync Table ic_inventory: data03 (0s, 100 items)[0m
+2024/07/19 12:10:11 [32m=== Synchronization process completed ===[0m
+2024/07/19 12:10:11 Total Time: [33m0.36 seconds[0m
+2024/07/19 12:10:11 [35m=== Summary ===[0m
+2024/07/19 12:10:11 [31mOverall Total      :        0 items[0m
+2024/07/19 12:10:11 Start Time         : [36m2024-07-19 12:10:10.90[0m
+2024/07/19 12:10:11 End Time           : [36m2024-07-19 12:10:11.26[0m
+2024/07/19 12:10:11 [31mTotal Process Time : 0s[0m
+2024/07/19 12:12:19 [32m=== Start synchronization process ===[0m
+2024/07/19 12:12:19 Start Time: [36m2024-07-19 12:12:19.46[0m
+2024/07/19 12:12:19 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 12:12:19 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:12:19 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 12:12:19 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 12:12:19 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 12:12:19 Error in ic_inventory sync: API request failed with status code 401: {"message":"Token Invalid.","success":false}
+2024/07/19 12:12:19 [32m=== Synchronization process completed ===[0m
+2024/07/19 12:12:19 Total Time: [33m0.22 seconds[0m
+2024/07/19 12:12:19 [35m=== Summary ===[0m
+2024/07/19 12:12:19 [31mOverall Total      :        0 items[0m
+2024/07/19 12:12:19 Start Time         : [36m2024-07-19 12:12:19.46[0m
+2024/07/19 12:12:19 End Time           : [36m2024-07-19 12:12:19.68[0m
+2024/07/19 12:12:19 [31mTotal Process Time : 0s[0m
+2024/07/19 12:46:54 [32m=== Start synchronization process ===[0m
+2024/07/19 12:46:54 Start Time: [36m2024-07-19 12:46:54.83[0m
+2024/07/19 12:46:54 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 12:46:54 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:46:54 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 12:46:54 Step 3: Processed 2 items (0.01 seconds)
+2024/07/19 12:46:55 Sent batch 1-2 of 2 for table ic_inventory
+2024/07/19 12:46:55 Step 4: Sent all data to API (1.08 seconds)
+2024/07/19 12:46:55 [32m✓ Sync Table ic_inventory: data03 (1s, 2 items)[0m
+2024/07/19 12:46:55 [32m=== Synchronization process completed ===[0m
+2024/07/19 12:46:55 Total Time: [33m1.15 seconds[0m
+2024/07/19 12:46:55 [35m=== Summary ===[0m
+2024/07/19 12:46:55 [31mOverall Total      :        0 items[0m
+2024/07/19 12:46:55 Start Time         : [36m2024-07-19 12:46:54.83[0m
+2024/07/19 12:46:55 End Time           : [36m2024-07-19 12:46:55.98[0m
+2024/07/19 12:46:55 [31mTotal Process Time : 1s[0m
+2024/07/19 12:51:52 [32m=== Start synchronization process ===[0m
+2024/07/19 12:51:52 Start Time: [36m2024-07-19 12:51:52.10[0m
+2024/07/19 12:51:52 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 12:51:52 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:51:52 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 12:51:52 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 12:51:53 Sent batch 1-2 of 2 for table ic_inventory
+2024/07/19 12:51:53 Step 4: Sent all data to API (1.15 seconds)
+2024/07/19 12:51:53 [32m✓ Sync Table ic_inventory: data03 (0h 0m 1s 216ms, 2 items)[0m
+2024/07/19 12:51:53 [32m=== Synchronization process completed ===[0m
+2024/07/19 12:51:53 Total Time: [33m1.22 seconds[0m
+2024/07/19 12:51:53 [35m=== Summary ===[0m
+2024/07/19 12:51:53 [31mOverall Total      :        0 items[0m
+2024/07/19 12:51:53 Start Time         : [36m2024-07-19 12:51:52.109[0m
+2024/07/19 12:51:53 End Time           : [36m2024-07-19 12:51:53.330[0m
+2024/07/19 12:51:53 [31mTotal Process Time : 0h 0m 1s 220ms[0m
+2024/07/19 12:57:48 [32m=== Start synchronization process ===[0m
+2024/07/19 12:57:48 Start Time: [36m2024-07-19 12:57:48.50[0m
+2024/07/19 12:57:48 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 12:57:48 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:57:48 Step 2: Queried data from PostgreSQL (0.10 seconds)
+2024/07/19 12:57:48 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 12:57:49 Sent batch 1-2 of 2 for table ic_inventory
+2024/07/19 12:57:49 Step 4: Sent all data to API (1.08 seconds)
+2024/07/19 12:57:49 [32m✓ Sync Table ic_inventory: data03 (0h 0m 1s 180ms, 2 items)[0m
+2024/07/19 12:57:49 [32m=== Synchronization process completed ===[0m
+2024/07/19 12:57:49 Total Time: [33m1.18 seconds[0m
+2024/07/19 12:57:49 [35m=== Summary ===[0m
+2024/07/19 12:57:49 [34mDatabase: data03[0m
+2024/07/19 12:57:49   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 1s 180ms
+2024/07/19 12:57:49 [33m  DB Total                      :        2 items, 0h 0m 1s 180ms[0m
+2024/07/19 12:57:49 [31mOverall Total      :        2 items[0m
+2024/07/19 12:57:49 Start Time         : [36m2024-07-19 12:57:48.505[0m
+2024/07/19 12:57:49 End Time           : [36m2024-07-19 12:57:49.686[0m
+2024/07/19 12:57:49 [31mTotal Process Time : 0h 0m 1s 181ms[0m
+2024/07/19 12:59:43 [32m=== Start synchronization process ===[0m
+2024/07/19 12:59:43 Start Time: [36m2024-07-19 12:59:43.70[0m
+2024/07/19 12:59:43 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 12:59:43 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 12:59:43 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 12:59:43 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 12:59:44 Sent batch 1-2 of 2 for table ic_inventory
+2024/07/19 12:59:44 Step 4: Sent all data to API (0.99 seconds)
+2024/07/19 12:59:44 [32m✓ Sync Table ic_inventory: data03 (0h 0m 1s 57ms, 2 items)[0m
+2024/07/19 12:59:44 [32m=== Synchronization process completed ===[0m
+2024/07/19 12:59:44 Total Time: [33m1.06 seconds[0m
+2024/07/19 12:59:44 [35m=== Summary ===[0m
+2024/07/19 12:59:44 [34mDatabase: data03[0m
+2024/07/19 12:59:44   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 1s 57ms
+2024/07/19 12:59:44 [33m  DB Total                      :        2 items, 0h 0m 1s 57ms[0m
+2024/07/19 12:59:44 [31mOverall Total      :        2 items[0m
+2024/07/19 12:59:44 Start Time         : [36m2024-07-19 12:59:43.707[0m
+2024/07/19 12:59:44 End Time           : [36m2024-07-19 12:59:44.765[0m
+2024/07/19 12:59:44 [31mTotal Process Time : 0h 0m 1s 57ms[0m
+2024/07/19 13:00:05 [32m=== Start synchronization process ===[0m
+2024/07/19 13:00:05 Start Time: [36m2024-07-19 13:00:05.45[0m
+2024/07/19 13:00:05 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 13:00:05 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:00:05 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:00:05 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 13:00:07 Sent batch 1-50 of 165 for table ap_supplier
+2024/07/19 13:00:08 Sent batch 51-100 of 165 for table ap_supplier
+2024/07/19 13:00:09 Sent batch 101-150 of 165 for table ap_supplier
+2024/07/19 13:00:10 Sent batch 151-165 of 165 for table ap_supplier
+2024/07/19 13:00:10 Step 4: Sent all data to API (4.89 seconds)
+2024/07/19 13:00:10 [32m✓ Sync Table ap_supplier: data03 (0h 0m 4s 935ms, 165 items)[0m
+2024/07/19 13:00:10 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 13:00:10 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:00:10 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:00:10 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 13:00:10 Sent batch 1-50 of 3534 for table ar_customer
+2024/07/19 13:00:10 Sent batch 51-100 of 3534 for table ar_customer
+2024/07/19 13:00:10 Sent batch 101-150 of 3534 for table ar_customer
+2024/07/19 13:00:11 Sent batch 151-200 of 3534 for table ar_customer
+2024/07/19 13:00:11 Sent batch 201-250 of 3534 for table ar_customer
+2024/07/19 13:00:11 Sent batch 251-300 of 3534 for table ar_customer
+2024/07/19 13:00:11 Sent batch 301-350 of 3534 for table ar_customer
+2024/07/19 13:00:11 Sent batch 351-400 of 3534 for table ar_customer
+2024/07/19 13:00:11 Sent batch 401-450 of 3534 for table ar_customer
+2024/07/19 13:00:13 Sent batch 451-500 of 3534 for table ar_customer
+2024/07/19 13:00:16 Sent batch 501-550 of 3534 for table ar_customer
+2024/07/19 13:00:16 Sent batch 551-600 of 3534 for table ar_customer
+2024/07/19 13:00:16 Sent batch 601-650 of 3534 for table ar_customer
+2024/07/19 13:00:16 Sent batch 651-700 of 3534 for table ar_customer
+2024/07/19 13:00:16 Sent batch 701-750 of 3534 for table ar_customer
+2024/07/19 13:00:16 Sent batch 751-800 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 801-850 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 851-900 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 901-950 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 951-1000 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1001-1050 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1051-1100 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1101-1150 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1151-1200 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1201-1250 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1251-1300 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1301-1350 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1351-1400 of 3534 for table ar_customer
+2024/07/19 13:00:17 Sent batch 1401-1450 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1451-1500 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1501-1550 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1551-1600 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1601-1650 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1651-1700 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1701-1750 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1751-1800 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1801-1850 of 3534 for table ar_customer
+2024/07/19 13:00:18 Sent batch 1851-1900 of 3534 for table ar_customer
+2024/07/19 13:00:19 Sent batch 1901-1950 of 3534 for table ar_customer
+2024/07/19 13:00:19 Sent batch 1951-2000 of 3534 for table ar_customer
+2024/07/19 13:00:19 Sent batch 2001-2050 of 3534 for table ar_customer
+2024/07/19 13:00:19 Sent batch 2051-2100 of 3534 for table ar_customer
+2024/07/19 13:00:19 Sent batch 2101-2150 of 3534 for table ar_customer
+2024/07/19 13:00:19 Sent batch 2151-2200 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2201-2250 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2251-2300 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2301-2350 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2351-2400 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2401-2450 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2451-2500 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2501-2550 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2551-2600 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2601-2650 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2651-2700 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2701-2750 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2751-2800 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2801-2850 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2851-2900 of 3534 for table ar_customer
+2024/07/19 13:00:20 Sent batch 2901-2950 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 2951-3000 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3001-3050 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3051-3100 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3101-3150 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3151-3200 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3201-3250 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3251-3300 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3301-3350 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3351-3400 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3401-3450 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3451-3500 of 3534 for table ar_customer
+2024/07/19 13:00:21 Sent batch 3501-3534 of 3534 for table ar_customer
+2024/07/19 13:00:21 Step 4: Sent all data to API (11.25 seconds)
+2024/07/19 13:00:21 [32m✓ Sync Table ar_customer: data03 (0h 0m 11s 323ms, 3534 items)[0m
+2024/07/19 13:00:21 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 13:00:21 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:00:21 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 13:00:21 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 13:00:22 Sent batch 1-2 of 2 for table ic_inventory
+2024/07/19 13:00:22 Step 4: Sent all data to API (0.88 seconds)
+2024/07/19 13:00:22 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 946ms, 2 items)[0m
+2024/07/19 13:00:22 [32m=== Synchronization process completed ===[0m
+2024/07/19 13:00:22 Total Time: [33m17.21 seconds[0m
+2024/07/19 13:00:22 [35m=== Summary ===[0m
+2024/07/19 13:00:22 [34mDatabase: data03[0m
+2024/07/19 13:00:22   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 946ms
+2024/07/19 13:00:22 [33m  DB Total                      :        2 items, 0h 0m 0s 946ms[0m
+2024/07/19 13:00:22 [31mOverall Total      :        2 items[0m
+2024/07/19 13:00:22 Start Time         : [36m2024-07-19 13:00:05.454[0m
+2024/07/19 13:00:22 End Time           : [36m2024-07-19 13:00:22.664[0m
+2024/07/19 13:00:22 [31mTotal Process Time : 0h 0m 17s 209ms[0m
+2024/07/19 13:02:53 [32m=== Start synchronization process ===[0m
+2024/07/19 13:02:53 Start Time: [36m2024-07-19 13:02:53.26[0m
+2024/07/19 13:02:53 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 13:02:53 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:02:53 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:02:53 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:02:54 Sent batch 1-50 of 100 for table ap_supplier
+2024/07/19 13:02:54 Sent batch 51-100 of 100 for table ap_supplier
+2024/07/19 13:02:54 Step 4: Sent all data to API (1.50 seconds)
+2024/07/19 13:02:54 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 541ms, 100 items)[0m
+2024/07/19 13:02:54 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 13:02:54 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:02:54 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:02:54 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:02:55 Sent batch 1-50 of 100 for table ar_customer
+2024/07/19 13:02:56 Sent batch 51-100 of 100 for table ar_customer
+2024/07/19 13:02:56 Step 4: Sent all data to API (1.58 seconds)
+2024/07/19 13:02:56 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 634ms, 100 items)[0m
+2024/07/19 13:02:56 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 13:02:56 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:02:56 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 13:02:56 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:03:18 Sent batch 1-50 of 100 for table ic_inventory
+2024/07/19 13:03:39 Sent batch 51-100 of 100 for table ic_inventory
+2024/07/19 13:03:39 Step 4: Sent all data to API (43.17 seconds)
+2024/07/19 13:03:39 [32m✓ Sync Table ic_inventory: data03 (0h 0m 43s 243ms, 100 items)[0m
+2024/07/19 13:03:39 [32m=== Synchronization process completed ===[0m
+2024/07/19 13:03:39 Total Time: [33m46.42 seconds[0m
+2024/07/19 13:03:39 [35m=== Summary ===[0m
+2024/07/19 13:03:39 [34mDatabase: data03[0m
+2024/07/19 13:03:39   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 541ms
+2024/07/19 13:03:39   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 634ms
+2024/07/19 13:03:39   Sync ic_inventory ToMongoDB   :      100 items, 0h 0m 43s 243ms
+2024/07/19 13:03:39 [33m  DB Total                      :      300 items, 0h 0m 46s 420ms[0m
+2024/07/19 13:03:39 [31mOverall Total      :      300 items[0m
+2024/07/19 13:03:39 Start Time         : [36m2024-07-19 13:02:53.266[0m
+2024/07/19 13:03:39 End Time           : [36m2024-07-19 13:03:39.689[0m
+2024/07/19 13:03:39 [31mTotal Process Time : 0h 0m 46s 422ms[0m
+2024/07/19 13:05:47 [32m=== Start synchronization process ===[0m
+2024/07/19 13:05:47 Start Time: [36m2024-07-19 13:05:47.10[0m
+2024/07/19 13:05:47 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 13:05:47 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:05:47 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:05:47 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:05:47 Sent batch 1-50 of 100 for table ap_supplier
+2024/07/19 13:05:48 Sent batch 51-100 of 100 for table ap_supplier
+2024/07/19 13:05:48 Step 4: Sent all data to API (1.48 seconds)
+2024/07/19 13:05:48 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 533ms, 100 items)[0m
+2024/07/19 13:05:48 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 13:05:48 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:05:48 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:05:48 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:05:49 Sent batch 1-50 of 100 for table ar_customer
+2024/07/19 13:05:50 Sent batch 51-100 of 100 for table ar_customer
+2024/07/19 13:05:50 Step 4: Sent all data to API (1.59 seconds)
+2024/07/19 13:05:50 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 636ms, 100 items)[0m
+2024/07/19 13:05:50 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 13:05:50 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:05:50 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 13:05:50 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 13:05:51 Sent batch 1-2 of 2 for table ic_inventory (0.82 seconds)
+2024/07/19 13:05:51 Step 4: Sent all data to API (0.82 seconds)
+2024/07/19 13:05:51 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 886ms, 2 items)[0m
+2024/07/19 13:05:51 [32m=== Synchronization process completed ===[0m
+2024/07/19 13:05:51 Total Time: [33m4.06 seconds[0m
+2024/07/19 13:05:51 [35m=== Summary ===[0m
+2024/07/19 13:05:51 [34mDatabase: data03[0m
+2024/07/19 13:05:51   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 533ms
+2024/07/19 13:05:51   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 636ms
+2024/07/19 13:05:51   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 886ms
+2024/07/19 13:05:51 [33m  DB Total                      :      202 items, 0h 0m 4s 55ms[0m
+2024/07/19 13:05:51 [31mOverall Total      :      202 items[0m
+2024/07/19 13:05:51 Start Time         : [36m2024-07-19 13:05:47.109[0m
+2024/07/19 13:05:51 End Time           : [36m2024-07-19 13:05:51.166[0m
+2024/07/19 13:05:51 [31mTotal Process Time : 0h 0m 4s 56ms[0m
+2024/07/19 13:08:41 [32m=== Start synchronization process ===[0m
+2024/07/19 13:08:41 Start Time: [36m2024-07-19 13:08:41.82[0m
+2024/07/19 13:08:41 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 13:08:41 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:08:41 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 13:08:41 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:08:42 Sent batch 1-50 of 100 for table ap_supplier (0.71 seconds)
+2024/07/19 13:08:43 Sent batch 51-100 of 100 for table ap_supplier (0.63 seconds)
+2024/07/19 13:08:43 Step 4: Sent all data to API (1.35 seconds)
+2024/07/19 13:08:43 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 416ms, 100 items)[0m
+2024/07/19 13:08:43 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 13:08:43 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:08:43 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:08:43 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:08:44 Sent batch 1-50 of 100 for table ar_customer (0.71 seconds)
+2024/07/19 13:08:44 Sent batch 51-100 of 100 for table ar_customer (0.83 seconds)
+2024/07/19 13:08:44 Step 4: Sent all data to API (1.55 seconds)
+2024/07/19 13:08:44 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 596ms, 100 items)[0m
+2024/07/19 13:08:44 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 13:08:44 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:08:44 Step 2: Queried data from PostgreSQL (0.08 seconds)
+2024/07/19 13:08:44 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 13:08:45 Sent batch 1-2 of 2 for table ic_inventory (0.74 seconds)
+2024/07/19 13:08:45 Step 4: Sent all data to API (0.74 seconds)
+2024/07/19 13:08:45 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 820ms, 2 items)[0m
+2024/07/19 13:08:45 [32m=== Synchronization process completed ===[0m
+2024/07/19 13:08:45 Total Time: [33m3.83 seconds[0m
+2024/07/19 13:08:45 [35m=== Summary ===[0m
+2024/07/19 13:08:45 [34mDatabase: data03[0m
+2024/07/19 13:08:45   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 416ms
+2024/07/19 13:08:45   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 596ms
+2024/07/19 13:08:45   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 820ms
+2024/07/19 13:08:45 [33m  DB Total                      :      202 items, 0h 0m 3s 832ms[0m
+2024/07/19 13:08:45 [31mOverall Total      :      202 items[0m
+2024/07/19 13:08:45 Start Time         : [36m2024-07-19 13:08:41.825[0m
+2024/07/19 13:08:45 End Time           : [36m2024-07-19 13:08:45.659[0m
+2024/07/19 13:08:45 [31mTotal Process Time : 0h 0m 3s 833ms[0m
+2024/07/19 13:13:07 [32m=== Start synchronization process ===[0m
+2024/07/19 13:13:07 [36mStart Time: 2024-07-19 13:13:07.214[36m[0m
+2024/07/19 13:13:07 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 13:13:07 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:13:07 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:13:07 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:13:08 Sent batch 1-50 of 100 for table ap_supplier (1.36 seconds)
+2024/07/19 13:13:09 Sent batch 51-100 of 100 for table ap_supplier (0.72 seconds)
+2024/07/19 13:13:09 Step 4: Sent all data to API (2.08 seconds)
+2024/07/19 13:13:09 [32m✓ Sync Table ap_supplier: data03 (0h 0m 2s 126ms, 100 items)[0m
+2024/07/19 13:13:09 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 13:13:09 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:13:09 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:13:09 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:13:10 Sent batch 1-50 of 100 for table ar_customer (0.87 seconds)
+2024/07/19 13:13:12 Sent batch 51-100 of 100 for table ar_customer (2.38 seconds)
+2024/07/19 13:13:12 Step 4: Sent all data to API (3.25 seconds)
+2024/07/19 13:13:12 [32m✓ Sync Table ar_customer: data03 (0h 0m 3s 304ms, 100 items)[0m
+2024/07/19 13:13:12 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 13:13:12 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:13:12 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 13:13:12 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 13:13:13 Sent batch 1-2 of 2 for table ic_inventory (0.76 seconds)
+2024/07/19 13:13:13 Step 4: Sent all data to API (0.76 seconds)
+2024/07/19 13:13:13 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 824ms, 2 items)[0m
+2024/07/19 13:13:13 [32m=== Synchronization process completed ===[0m
+2024/07/19 13:13:13 [33mTotal Time: [0m6.255 seconds[0m
+2024/07/19 13:13:13 [35m=== Summary ===[0m
+2024/07/19 13:13:13 [34mDatabase: data03[0m
+2024/07/19 13:13:13   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 2s 126ms
+2024/07/19 13:13:13   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 3s 304ms
+2024/07/19 13:13:13   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 824ms
+2024/07/19 13:13:13 [33m  DB Total                      :      202 items, 0h 0m 6s 254ms[0m
+2024/07/19 13:13:13 [31mOverall Total      :      202 items[0m
+2024/07/19 13:13:13 Start Time         : [36m2024-07-19 13:13:07.214[0m
+2024/07/19 13:13:13 End Time           : [36m2024-07-19 13:13:13.469[0m
+2024/07/19 13:13:13 [31mTotal Process Time : 0h 0m 6s 255ms[0m
+2024/07/19 13:19:48 [32m=== Start synchronization process ===[0m
+2024/07/19 13:19:48 [36mStart Time: 2024-07-19 13:19:48.376[36m[0m
+2024/07/19 13:19:48 ▶ Start Sync Table [33map_supplier[0m: data03
+2024/07/19 13:19:48 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:19:48 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:19:48 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:19:49 Sent batch 1-50 of 100 for table ap_supplier (0.85 seconds)
+2024/07/19 13:19:49 Sent batch 51-100 of 100 for table ap_supplier (0.63 seconds)
+2024/07/19 13:19:49 Step 4: Sent all data to API (1.47 seconds)
+2024/07/19 13:19:49 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 527ms, 100 items)[0m
+2024/07/19 13:19:49 ▶ Start Sync Table [33mar_customer[0m: data03
+2024/07/19 13:19:49 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:19:49 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 13:19:49 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 13:19:50 Sent batch 1-50 of 100 for table ar_customer (0.72 seconds)
+2024/07/19 13:19:51 Sent batch 51-100 of 100 for table ar_customer (0.82 seconds)
+2024/07/19 13:19:51 Step 4: Sent all data to API (1.54 seconds)
+2024/07/19 13:19:51 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 590ms, 100 items)[0m
+2024/07/19 13:19:51 ▶ Start Sync Table [33mic_inventory[0m: data03
+2024/07/19 13:19:51 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 13:19:51 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 13:19:51 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 13:19:52 Sent batch 1-2 of 2 for table ic_inventory (0.86 seconds)
+2024/07/19 13:19:52 Step 4: Sent all data to API (0.86 seconds)
+2024/07/19 13:19:52 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 924ms, 2 items)[0m
+2024/07/19 13:19:52 [32m=== Synchronization process completed ===[0m
+2024/07/19 13:19:52 [33mTotal Time: [0m4.044 seconds[0m
+2024/07/19 13:19:52 [35m=== Summary ===[0m
+2024/07/19 13:19:52 [34mDatabase: data03[0m
+2024/07/19 13:19:52   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 527ms
+2024/07/19 13:19:52   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 590ms
+2024/07/19 13:19:52   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 924ms
+2024/07/19 13:19:52 [33m  DB Total                      :      202 items, 0h 0m 4s 42ms[0m
+2024/07/19 13:19:52 [31mOverall Total      :      202 items[0m
+2024/07/19 13:19:52 Start Time         : [36m2024-07-19 13:19:48.376[0m
+2024/07/19 13:19:52 End Time           : [36m2024-07-19 13:19:52.421[0m
+2024/07/19 13:19:52 [31mTotal Process Time : 0h 0m 4s 44ms[0m

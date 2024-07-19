@@ -1,63 +1,36 @@
 package myglobal
 
 import (
-	"crypto/sha256"
-	"database/sql"
-	"encoding/hex"
 	"fmt"
 	"log"
+	"smlsynctodede/config"
+	"smlsynctodede/models"
+	"sort"
+	"strconv"
+	"strings"
+	"sync"
 	"time"
+
+	"github.com/google/uuid"
 )
 
-var ShopId = "2QoilMQkX9i6vtAE88ilEubnrhz"
-
-func CalculateSHA256(input string) string {
-	hash := sha256.New()
-	hash.Write([]byte(input))
-	hashBytes := hash.Sum(nil)
-	return hex.EncodeToString(hashBytes)
-}
-
-// PostgreSQL connection parameters
-var (
-	/// Jead DB :
-
-	// PgHost     = "localhost"
-	// PgPort     = 5432
-	// PgUser     = "postgres"
-	// PgPassword = "19682511"
-
-	PgHost     = "192.168.2.236"
-	PgPort     = 5432
-	PgUser     = "postgres"
-	PgPassword = "sml"
-)
-
-type DatabaseModel struct {
-	DatabaseName string
-	ShopId       string
-}
-
-var DatabaseList = []DatabaseModel{
-	// {
-	// 	DatabaseName: "data03",
-	// 	ShopId:       "VDATA03",
-	// },
-	// {
-	// 	DatabaseName: "data04",
-	// 	ShopId:       "VDATA04",
-	// },
-
-	/// stock sml test
+var PartServices = []models.PartService{
 	{
-		DatabaseName: "sml1",
-		ShopId:       "sml1",
+		ServiceName: "creditor",
+		PartName:    "debtaccount/creditor/bulk",
 	},
 	{
-		DatabaseName: "sml1_old",
-		ShopId:       "sml1_old",
+		ServiceName: "debtor",
+		PartName:    "debtaccount/debtor/bulk",
+	},
+	{
+		ServiceName: "productbarcode",
+		PartName:    "product/barcode/bulk",
 	},
 }
+
+var results []models.SyncResult
+var resultMutex sync.Mutex
 
 // ANSI color codes
 const (
@@ -73,69 +46,137 @@ const (
 // GetPostgreSQLConnectionString returns the connection string for PostgreSQL
 func GetPostgreSQLConnectionString(dbName string) string {
 	return fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		PgHost, PgPort, PgUser, PgPassword, dbName)
+		config.AppConfig.Database.Host,
+		config.AppConfig.Database.Port,
+		config.AppConfig.Database.User,
+		config.AppConfig.Database.Password,
+		dbName)
 }
 
-// NullStringToString converts sql.NullString to string
-func NullStringToString(s sql.NullString) string {
-	if s.Valid {
-		return s.String
+// GetFullAPIURL returns the full API URL for a given service
+func GetFullAPIURL(serviceName string) string {
+	for _, part := range PartServices {
+		if part.ServiceName == serviceName {
+			return config.AppConfig.API.BaseURL + part.PartName
+		}
 	}
 	return ""
 }
 
-// NullInt32ToInt converts sql.NullInt32 to int
-func NullInt32ToInt(i sql.NullInt32) int {
-	if i.Valid {
-		return int(i.Int32)
-	}
-	return 0
+// GenerateGUID สร้าง GUID ใหม่
+func GenerateGUID() string {
+	return uuid.New().String()
 }
 
-// NullFloat64ToFloat converts sql.NullFloat64 to float64
-func NullFloat64ToFloat(f sql.NullFloat64) float64 {
-	if f.Valid {
-		return f.Float64
-	}
-	return 0.00
+// InitResults initializes the results slice
+func InitResults() {
+	results = make([]models.SyncResult, 0)
 }
 
-// FormatDateTime แปลงค่า docDate และ docTime จาก sql.NullString เป็นรูปแบบที่เหมาะสมสำหรับ ClickHouse
-func FormatDateTime(docDate, docTime sql.NullString) (string, string) {
-	var docDateStr, docTimeStr string
+// LogResult บันทึกผลลัพธ์การทำงานของฟังก์ชัน
+func LogResult(dbName, funcName string, duration time.Duration, count int) {
+	resultMutex.Lock()
+	defer resultMutex.Unlock()
+	results = append(results, models.SyncResult{
+		DatabaseName: dbName,
+		FunctionName: funcName,
+		Duration:     duration, // No rounding here
+		ItemCount:    count,
+	})
+}
 
-	// จัดการกับวันที่
-	if docDate.Valid {
-		// แปลงวันที่จากฟอร์แมต ISO 8601 เป็นฟอร์แมตที่ต้องการ
-		t, err := time.Parse(time.RFC3339[:10], docDate.String[:10])
-		if err != nil {
-			log.Printf("Error parsing date: %v", err)
-			docDateStr = "0000-00-00"
-		} else {
-			docDateStr = t.Format("2006-01-02")
+// PrintSummary prints the summary of the synchronization process
+func PrintSummary(timeStart, timeStop time.Time) {
+	log.Printf("%s=== Summary ===%s", ColorPurple, ColorReset)
+
+	// สร้าง map เพื่อจัดกลุ่มผลลัพธ์ตาม database
+	summaryByDB := make(map[string]map[string]models.SyncResult)
+	var totalItems int
+
+	// จัดกลุ่มผลลัพธ์ตาม database และฟังก์ชัน
+	for _, result := range results {
+		if _, exists := summaryByDB[result.DatabaseName]; !exists {
+			summaryByDB[result.DatabaseName] = make(map[string]models.SyncResult)
 		}
-	} else {
-		docDateStr = "0000-00-00"
+		summaryByDB[result.DatabaseName][result.FunctionName] = result
+		totalItems += result.ItemCount
 	}
 
-	// จัดการกับเวลา
-	if docTime.Valid {
-		// ใช้เวลาจาก docTime ถ้ามี
-		docTimeStr = docTime.String
-	} else {
-		// ถ้าไม่มี docTime ให้ใช้เวลาจาก docDate ถ้ามี
-		if docDate.Valid {
-			t, err := time.Parse(time.RFC3339, docDate.String)
-			if err != nil {
-				log.Printf("Error parsing time from date: %v", err)
-				docTimeStr = "00:00:00"
-			} else {
-				docTimeStr = t.Format("15:04:05")
-			}
-		} else {
-			docTimeStr = "00:00:00"
+	// แสดงผลสรุปแยกตาม database
+	for dbName, dbResults := range summaryByDB {
+		log.Printf("%sDatabase: %s%s", ColorBlue, dbName, ColorReset)
+		var dbTotalItems int
+		var dbTotalDuration time.Duration
+
+		// สร้าง slice ของ keys เพื่อเรียงลำดับ
+		var keys []string
+		for k := range dbResults {
+			keys = append(keys, k)
 		}
+
+		// เรียงลำดับตาม table name
+		sort.Slice(keys, func(i, j int) bool {
+			return strings.ToLower(keys[i]) < strings.ToLower(keys[j])
+		})
+
+		for _, key := range keys {
+			result := dbResults[key]
+			log.Printf("  %-30s: %8d items, %s",
+				result.FunctionName, result.ItemCount, FormatDuration(result.Duration))
+			dbTotalItems += result.ItemCount
+			dbTotalDuration += result.Duration
+		}
+		// แสดงผลรวมของแต่ละ database
+		log.Printf("%s  %-30s: %8d items, %s%s\n",
+			ColorYellow, "DB Total", dbTotalItems, FormatDuration(dbTotalDuration), ColorReset)
 	}
 
-	return docDateStr, docTimeStr
+	// แสดงผลรวมทั้งหมดและข้อมูลเวลาการทำงาน
+	totalDuration := timeStop.Sub(timeStart)
+	log.Printf("%sOverall Total      : %8d items%s", ColorRed, totalItems, ColorReset)
+	log.Printf("Start Time         : %s%s%s", ColorCyan, timeStart.Format("2006-01-02 15:04:05.000"), ColorReset)
+	log.Printf("End Time           : %s%s%s", ColorCyan, timeStop.Format("2006-01-02 15:04:05.000"), ColorReset)
+	log.Printf("%sTotal Process Time : %s%s", ColorRed, FormatDuration(totalDuration), ColorReset)
+}
+
+// FormatDuration formats a duration to a human-readable string
+func FormatDuration(d time.Duration) string {
+	ms := d.Milliseconds() % 1000
+	s := int(d.Seconds()) % 60
+	m := int(d.Minutes()) % 60
+	h := d.Hours()
+
+	if h > 0 {
+		return fmt.Sprintf("%dh %dm %ds %dms", int(h), int(m), int(s), int(ms))
+	} else if m > 0 {
+		return fmt.Sprintf("%dm %ds %dms", int(m), int(s), int(ms))
+	}
+	return fmt.Sprintf("%ds %dms", int(s), int(ms))
+}
+
+func LogError(message string, err error) {
+	log.Printf("%s✗ %s: %v%s", ColorRed, message, err, ColorReset)
+}
+
+func LogSuccess(operation, databaseName string, duration time.Duration, itemCount int) {
+	log.Printf("%s✓ %s: %s (%s, %d items)%s",
+		ColorGreen, operation, databaseName, FormatDuration(duration), itemCount, ColorReset)
+}
+
+func GetIntInput(prompt string) int {
+	for {
+		input := getUserInput(prompt)
+		num, err := strconv.Atoi(input)
+		if err == nil {
+			return num
+		}
+		fmt.Println("Invalid input. Please enter a valid number.")
+	}
+}
+
+func getUserInput(prompt string) string {
+	fmt.Print(prompt)
+	var input string
+	fmt.Scanln(&input)
+	return input
 }
