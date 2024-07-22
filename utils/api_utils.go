@@ -1,4 +1,4 @@
-package myglobal
+package utils
 
 import (
 	"bytes"
@@ -6,7 +6,17 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"smlsynctodede/config"
 )
+
+func GetFullAPIURL(serviceName string) string {
+	for _, part := range config.PartServices {
+		if part.ServiceName == serviceName {
+			return config.AppConfig.API.BaseURL + part.PartName
+		}
+	}
+	return ""
+}
 
 func SendDataToAPI(serviceName string, apiKey string, data interface{}) ([]byte, error) {
 	apiURL := GetFullAPIURL(serviceName)

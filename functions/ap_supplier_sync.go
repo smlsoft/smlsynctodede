@@ -4,21 +4,23 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"smlsynctodede/database"
+	"smlsynctodede/logging"
 	"smlsynctodede/models"
-	"smlsynctodede/myglobal"
+	"smlsynctodede/utils"
 	"time"
 )
 
-func SyncApSupplierToMongoDB(database models.DatabaseModel, apiKey string) error {
+func SyncApSupplierToMongoDB(databases models.DatabaseModel, apiKey string) error {
 	tableName := "ap_supplier"
 	start := time.Now()
-	log.Printf("▶ Start Sync Table %s%s%s: %s", myglobal.ColorYellow, tableName, myglobal.ColorReset, database.DatabaseName)
+	logging.LogStartSync(tableName, databases.DatabaseName)
 
 	// Step 1: Connect to PostgreSQL
 	stepStart := time.Now()
-	db, err := sql.Open("postgres", myglobal.GetPostgreSQLConnectionString(database.DatabaseName))
+	db, err := sql.Open("postgres", database.GetPostgreSQLConnectionString(databases.DatabaseName))
 	if err != nil {
-		myglobal.LogError(fmt.Sprintf("Error connecting to PostgreSQL for table %s", tableName), err)
+		logging.LogError(fmt.Sprintf("Error connecting to PostgreSQL for table %s", tableName), err)
 		return err
 	}
 	defer db.Close()
@@ -31,10 +33,10 @@ func SyncApSupplierToMongoDB(database models.DatabaseModel, apiKey string) error
             code, 
             name_1
         FROM 
-            ap_supplier LIMIT 100
+            ap_supplier 
     `)
 	if err != nil {
-		myglobal.LogError(fmt.Sprintf("Error querying PostgreSQL for table %s", tableName), err)
+		logging.LogError(fmt.Sprintf("Error querying PostgreSQL for table %s", tableName), err)
 		return err
 	}
 	defer rows.Close()
@@ -72,31 +74,31 @@ func SyncApSupplierToMongoDB(database models.DatabaseModel, apiKey string) error
 	batchSize := 50
 	totalItems := len(creditors)
 	for i := 0; i < totalItems; i += batchSize {
-		batchStart := time.Now() // เพิ่มจุดเริ่มต้นในการจับเวลา
+		batchStart := time.Now()
 		end := i + batchSize
 		if end > totalItems {
 			end = totalItems
 		}
 		batch := creditors[i:end]
 
-		responseBody, err := myglobal.SendDataToAPI("creditor", apiKey, batch)
+		responseBody, err := utils.SendDataToAPI("creditor", apiKey, batch)
 		if err != nil {
 			if err.Error() == "API request failed with status code 401: {\"message\":\"Token Invalid.\",\"success\":false}" {
-				myglobal.LogError("Authentication failed. Please check your API key.", fmt.Errorf(string(responseBody)))
+				logging.LogError("Authentication failed. Please check your API key.", fmt.Errorf(string(responseBody)))
 				return err // Return error to stop the synchronization process
 			}
-			myglobal.LogError(fmt.Sprintf("Error sending data to API for table %s (batch %d-%d)", tableName, i+1, end), err)
+			logging.LogError(fmt.Sprintf("Error sending data to API for table %s (batch %d-%d)", tableName, i+1, end), err)
 			return err // Return error to stop the synchronization process
 		}
 
-		batchDuration := time.Since(batchStart) // เพิ่มจุดสิ้นสุดในการจับเวลา
+		batchDuration := time.Since(batchStart)
 		log.Printf("Sent batch %d-%d of %d for table %s (%.2f seconds)", i+1, end, totalItems, tableName, batchDuration.Seconds())
 	}
 	log.Printf("Step 4: Sent all data to API (%.2f seconds)", time.Since(stepStart).Seconds())
 
 	duration := time.Since(start)
-	myglobal.LogSuccess(fmt.Sprintf("Sync Table %s", tableName), database.DatabaseName, duration, totalItems)
-	myglobal.LogResult(database.DatabaseName, fmt.Sprintf("Sync %s ToMongoDB", tableName), duration, totalItems)
+	logging.LogSuccess(fmt.Sprintf("Successful Table %s", tableName), databases.DatabaseName, duration, totalItems)
+	logging.LogResult(databases.DatabaseName, fmt.Sprintf("Sync %s ToMongoDB", tableName), duration, totalItems)
 
 	return nil
 }

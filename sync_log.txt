@@ -818,3 +818,856 @@
 2024/07/19 13:19:52 Start Time         : [36m2024-07-19 13:19:48.376[0m
 2024/07/19 13:19:52 End Time           : [36m2024-07-19 13:19:52.421[0m
 2024/07/19 13:19:52 [31mTotal Process Time : 0h 0m 4s 44ms[0m
+2024/07/19 14:15:00 ▶ Start Sync Table ap_supplier: data03
+2024/07/19 14:15:00 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:15:00 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:15:00 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:15:00 [31m✗ Error sending data to API for table ap_supplier (batch 1-50): error sending request: Post "": unsupported protocol scheme ""[0m
+2024/07/19 14:15:00 Error in ap_supplier sync: error sending request: Post "": unsupported protocol scheme ""
+2024/07/19 14:15:00 ▶ Start Sync Table ar_customer: data03
+2024/07/19 14:15:00 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:15:00 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:15:00 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:15:00 [31m✗ Error sending data to API for table ar_customer (batch 1-50): error sending request: Post "": unsupported protocol scheme ""[0m
+2024/07/19 14:15:00 Error in ar_customer sync: error sending request: Post "": unsupported protocol scheme ""
+2024/07/19 14:15:00 ▶ Start Sync Table ic_inventory: data03
+2024/07/19 14:15:00 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:15:00 Step 2: Queried data from PostgreSQL (0.08 seconds)
+2024/07/19 14:15:00 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:15:00 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): error sending request: Post "": unsupported protocol scheme ""[0m
+2024/07/19 14:15:00 Error in ic_inventory sync: error sending request: Post "": unsupported protocol scheme ""
+2024/07/19 14:15:00 [35m=== Summary ===[0m
+2024/07/19 14:15:00 [31mOverall Total      :        0 items[0m
+2024/07/19 14:15:00 Start Time         : [36m2024-07-19 14:15:00.158[0m
+2024/07/19 14:15:00 End Time           : [36m2024-07-19 14:15:00.341[0m
+2024/07/19 14:15:00 [31mTotal Process Time : 0h 0m 0s 182ms[0m
+2024/07/19 14:15:12 ▶ Start Sync Table ap_supplier: data03
+2024/07/19 14:15:12 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:15:12 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:15:12 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:15:12 [31m✗ Error sending data to API for table ap_supplier (batch 1-50): error sending request: Post "": unsupported protocol scheme ""[0m
+2024/07/19 14:15:12 Error in ap_supplier sync: error sending request: Post "": unsupported protocol scheme ""
+2024/07/19 14:15:12 ▶ Start Sync Table ar_customer: data03
+2024/07/19 14:15:12 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:15:12 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:15:12 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:15:12 [31m✗ Error sending data to API for table ar_customer (batch 1-50): error sending request: Post "": unsupported protocol scheme ""[0m
+2024/07/19 14:15:12 Error in ar_customer sync: error sending request: Post "": unsupported protocol scheme ""
+2024/07/19 14:15:12 ▶ Start Sync Table ic_inventory: data03
+2024/07/19 14:15:12 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:15:12 Step 2: Queried data from PostgreSQL (0.18 seconds)
+2024/07/19 14:15:12 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:15:12 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): error sending request: Post "": unsupported protocol scheme ""[0m
+2024/07/19 14:15:12 Error in ic_inventory sync: error sending request: Post "": unsupported protocol scheme ""
+2024/07/19 14:15:12 [35m=== Summary ===[0m
+2024/07/19 14:15:12 [31mOverall Total      :        0 items[0m
+2024/07/19 14:15:12 Start Time         : [36m2024-07-19 14:15:12.322[0m
+2024/07/19 14:15:12 End Time           : [36m2024-07-19 14:15:12.592[0m
+2024/07/19 14:15:12 [31mTotal Process Time : 0h 0m 0s 270ms[0m
+2024/07/19 14:16:23 ▶ Start Sync Table ap_supplier: data03
+2024/07/19 14:16:23 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:16:23 Step 2: Queried data from PostgreSQL (0.15 seconds)
+2024/07/19 14:16:23 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:16:24 Sent batch 1-50 of 100 for table ap_supplier (1.07 seconds)
+2024/07/19 14:16:25 Sent batch 51-100 of 100 for table ap_supplier (0.85 seconds)
+2024/07/19 14:16:25 Step 4: Sent all data to API (1.92 seconds)
+2024/07/19 14:16:25 [32m✓ Sync Table ap_supplier: data03 (0h 0m 2s 74ms, 100 items)[0m
+2024/07/19 14:16:25 ▶ Start Sync Table ar_customer: data03
+2024/07/19 14:16:25 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:16:25 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:16:25 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:16:26 Sent batch 1-50 of 100 for table ar_customer (0.68 seconds)
+2024/07/19 14:16:26 Sent batch 51-100 of 100 for table ar_customer (0.81 seconds)
+2024/07/19 14:16:26 Step 4: Sent all data to API (1.48 seconds)
+2024/07/19 14:16:26 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 531ms, 100 items)[0m
+2024/07/19 14:16:26 ▶ Start Sync Table ic_inventory: data03
+2024/07/19 14:16:26 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:16:26 Step 2: Queried data from PostgreSQL (0.09 seconds)
+2024/07/19 14:16:26 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:16:27 Sent batch 1-2 of 2 for table ic_inventory (0.80 seconds)
+2024/07/19 14:16:27 Step 4: Sent all data to API (0.80 seconds)
+2024/07/19 14:16:27 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 891ms, 2 items)[0m
+2024/07/19 14:16:27 [35m=== Summary ===[0m
+2024/07/19 14:16:27 [34mDatabase: data03[0m
+2024/07/19 14:16:27   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 2s 74ms
+2024/07/19 14:16:27   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 531ms
+2024/07/19 14:16:27   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 891ms
+2024/07/19 14:16:27 [33m  DB Total                      :      202 items, 0h 0m 4s 497ms[0m
+2024/07/19 14:16:27 [31mOverall Total      :      202 items[0m
+2024/07/19 14:16:27 Start Time         : [36m2024-07-19 14:16:23.248[0m
+2024/07/19 14:16:27 End Time           : [36m2024-07-19 14:16:27.746[0m
+2024/07/19 14:16:27 [31mTotal Process Time : 0h 0m 4s 498ms[0m
+2024/07/19 14:19:35 ▶ Start Sync Table ap_supplier: data03
+2024/07/19 14:19:35 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:19:35 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:19:35 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:19:35 Sent batch 1-50 of 100 for table ap_supplier (0.79 seconds)
+2024/07/19 14:19:36 Sent batch 51-100 of 100 for table ap_supplier (0.63 seconds)
+2024/07/19 14:19:36 Step 4: Sent all data to API (1.42 seconds)
+2024/07/19 14:19:36 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 475ms, 100 items)[0m
+2024/07/19 14:19:36 ▶ Start Sync Table ar_customer: data03
+2024/07/19 14:19:36 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:19:36 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:19:36 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:19:37 Sent batch 1-50 of 100 for table ar_customer (0.69 seconds)
+2024/07/19 14:19:38 Sent batch 51-100 of 100 for table ar_customer (0.74 seconds)
+2024/07/19 14:19:38 Step 4: Sent all data to API (1.43 seconds)
+2024/07/19 14:19:38 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 484ms, 100 items)[0m
+2024/07/19 14:19:38 ▶ Start Sync Table ic_inventory: data03
+2024/07/19 14:19:38 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:19:38 Step 2: Queried data from PostgreSQL (0.08 seconds)
+2024/07/19 14:19:38 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:19:38 Sent batch 1-2 of 2 for table ic_inventory (0.79 seconds)
+2024/07/19 14:19:38 Step 4: Sent all data to API (0.79 seconds)
+2024/07/19 14:19:38 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 872ms, 2 items)[0m
+2024/07/19 14:19:38 [35m=== Summary ===[0m
+2024/07/19 14:19:38 [34mDatabase: data03[0m
+2024/07/19 14:19:38   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 475ms
+2024/07/19 14:19:38   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 484ms
+2024/07/19 14:19:38   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 872ms
+2024/07/19 14:19:38 [33m  DB Total                      :      202 items, 0h 0m 3s 832ms[0m
+2024/07/19 14:19:38 [31mOverall Total      :      202 items[0m
+2024/07/19 14:19:38 Start Time         : [36m2024-07-19 14:19:35.119[0m
+2024/07/19 14:19:38 End Time           : [36m2024-07-19 14:19:38.957[0m
+2024/07/19 14:19:38 [31mTotal Process Time : 0h 0m 3s 834ms[0m
+2024/07/19 14:20:31 ▶ Start Sync Table ap_supplier: data03
+2024/07/19 14:20:31 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:20:32 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:20:32 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:20:32 Sent batch 1-50 of 100 for table ap_supplier (0.72 seconds)
+2024/07/19 14:20:33 Sent batch 51-100 of 100 for table ap_supplier (0.82 seconds)
+2024/07/19 14:20:33 Step 4: Sent all data to API (1.54 seconds)
+2024/07/19 14:20:33 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 589ms, 100 items)[0m
+2024/07/19 14:20:33 ▶ Start Sync Table ar_customer: data03
+2024/07/19 14:20:33 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:20:33 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:20:33 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:20:34 Sent batch 1-50 of 100 for table ar_customer (0.76 seconds)
+2024/07/19 14:20:35 Sent batch 51-100 of 100 for table ar_customer (0.71 seconds)
+2024/07/19 14:20:35 Step 4: Sent all data to API (1.47 seconds)
+2024/07/19 14:20:35 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 526ms, 100 items)[0m
+2024/07/19 14:20:35 ▶ Start Sync Table ic_inventory: data03
+2024/07/19 14:20:35 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:20:35 Step 2: Queried data from PostgreSQL (0.10 seconds)
+2024/07/19 14:20:35 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:20:36 Sent batch 1-2 of 2 for table ic_inventory (0.93 seconds)
+2024/07/19 14:20:36 Step 4: Sent all data to API (0.93 seconds)
+2024/07/19 14:20:36 [32m✓ Sync Table ic_inventory: data03 (0h 0m 1s 27ms, 2 items)[0m
+2024/07/19 14:20:36 [35m=== Summary ===[0m
+2024/07/19 14:20:36 [34mDatabase: data03[0m
+2024/07/19 14:20:36   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 589ms
+2024/07/19 14:20:36   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 526ms
+2024/07/19 14:20:36   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 1s 27ms
+2024/07/19 14:20:36 [33m  DB Total                      :      202 items, 0h 0m 4s 143ms[0m
+2024/07/19 14:20:36 [31mOverall Total      :      202 items[0m
+2024/07/19 14:20:36 Start Time         : [36m2024-07-19 14:20:31.973[0m
+2024/07/19 14:20:36 End Time           : [36m2024-07-19 14:20:36.118[0m
+2024/07/19 14:20:36 [31mTotal Process Time : 0h 0m 4s 143ms[0m
+2024/07/19 14:21:42 ▶ Start Sync Table ap_supplier: data03
+2024/07/19 14:21:42 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:21:42 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:21:42 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:21:42 [31m✗ Error sending data to API for table ap_supplier (batch 1-50): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 14:21:42 Error in ap_supplier sync: API request failed with status code 401: {"message":"Token Invalid.","success":false}
+2024/07/19 14:21:42 ▶ Start Sync Table ar_customer: data03
+2024/07/19 14:21:42 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:21:42 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:21:42 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:21:42 [31m✗ Error sending data to API for table ar_customer (batch 1-50): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 14:21:42 Error in ar_customer sync: API request failed with status code 401: {"message":"Token Invalid.","success":false}
+2024/07/19 14:21:42 ▶ Start Sync Table ic_inventory: data03
+2024/07/19 14:21:42 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:21:42 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:21:42 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:21:42 [31m✗ Error sending data to API for table ic_inventory (batch 1-2): API request failed with status code 401: {"message":"Token Invalid.","success":false}
+[0m
+2024/07/19 14:21:42 Error in ic_inventory sync: API request failed with status code 401: {"message":"Token Invalid.","success":false}
+2024/07/19 14:21:42 [35m=== Summary ===[0m
+2024/07/19 14:21:42 [31mOverall Total      :        0 items[0m
+2024/07/19 14:21:42 Start Time         : [36m2024-07-19 14:21:42.445[0m
+2024/07/19 14:21:42 End Time           : [36m2024-07-19 14:21:42.852[0m
+2024/07/19 14:21:42 [31mTotal Process Time : 0h 0m 0s 406ms[0m
+2024/07/19 14:22:17 ▶ Start Sync Table ap_supplier: data03
+2024/07/19 14:22:17 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:22:18 Step 2: Queried data from PostgreSQL (0.08 seconds)
+2024/07/19 14:22:18 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:22:19 Sent batch 1-50 of 100 for table ap_supplier (1.07 seconds)
+2024/07/19 14:22:19 Sent batch 51-100 of 100 for table ap_supplier (0.78 seconds)
+2024/07/19 14:22:19 Step 4: Sent all data to API (1.85 seconds)
+2024/07/19 14:22:19 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 932ms, 100 items)[0m
+2024/07/19 14:22:19 ▶ Start Sync Table ar_customer: data03
+2024/07/19 14:22:19 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:22:19 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:22:19 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:22:21 Sent batch 1-50 of 100 for table ar_customer (1.48 seconds)
+2024/07/19 14:22:23 Sent batch 51-100 of 100 for table ar_customer (1.78 seconds)
+2024/07/19 14:22:23 Step 4: Sent all data to API (3.26 seconds)
+2024/07/19 14:22:23 [32m✓ Sync Table ar_customer: data03 (0h 0m 3s 305ms, 100 items)[0m
+2024/07/19 14:22:23 ▶ Start Sync Table ic_inventory: data03
+2024/07/19 14:22:23 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:22:23 Step 2: Queried data from PostgreSQL (0.08 seconds)
+2024/07/19 14:22:23 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:22:24 Sent batch 1-2 of 2 for table ic_inventory (0.97 seconds)
+2024/07/19 14:22:24 Step 4: Sent all data to API (0.97 seconds)
+2024/07/19 14:22:24 [32m✓ Sync Table ic_inventory: data03 (0h 0m 1s 52ms, 2 items)[0m
+2024/07/19 14:22:24 [35m=== Summary ===[0m
+2024/07/19 14:22:24 [34mDatabase: data03[0m
+2024/07/19 14:22:24   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 932ms
+2024/07/19 14:22:24   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 3s 305ms
+2024/07/19 14:22:24   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 1s 52ms
+2024/07/19 14:22:24 [33m  DB Total                      :      202 items, 0h 0m 6s 289ms[0m
+2024/07/19 14:22:24 [31mOverall Total      :      202 items[0m
+2024/07/19 14:22:24 Start Time         : [36m2024-07-19 14:22:17.953[0m
+2024/07/19 14:22:24 End Time           : [36m2024-07-19 14:22:24.243[0m
+2024/07/19 14:22:24 [31mTotal Process Time : 0h 0m 6s 290ms[0m
+2024/07/19 14:25:30 [33m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:25:30 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:25:30 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:25:30 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:25:31 Sent batch 1-50 of 100 for table ap_supplier (0.76 seconds)
+2024/07/19 14:25:32 Sent batch 51-100 of 100 for table ap_supplier (0.72 seconds)
+2024/07/19 14:25:32 Step 4: Sent all data to API (1.48 seconds)
+2024/07/19 14:25:32 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 529ms, 100 items)[0m
+2024/07/19 14:25:32 [33m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:25:32 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:25:32 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:25:32 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:25:33 Sent batch 1-50 of 100 for table ar_customer (0.70 seconds)
+2024/07/19 14:25:34 Sent batch 51-100 of 100 for table ar_customer (1.09 seconds)
+2024/07/19 14:25:34 Step 4: Sent all data to API (1.79 seconds)
+2024/07/19 14:25:34 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 842ms, 100 items)[0m
+2024/07/19 14:25:34 [33m▶ Start Sync Table ic_inventory[0m: [34mdata03[0m
+2024/07/19 14:25:34 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:25:34 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:25:34 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:25:35 Sent batch 1-2 of 2 for table ic_inventory (0.96 seconds)
+2024/07/19 14:25:35 Step 4: Sent all data to API (0.96 seconds)
+2024/07/19 14:25:35 [32m✓ Sync Table ic_inventory: data03 (0h 0m 1s 26ms, 2 items)[0m
+2024/07/19 14:25:35 [35m=== Summary ===[0m
+2024/07/19 14:25:35 [34mDatabase: data03[0m
+2024/07/19 14:25:35   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 529ms
+2024/07/19 14:25:35   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 842ms
+2024/07/19 14:25:35   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 1s 26ms
+2024/07/19 14:25:35 [33m  DB Total                      :      202 items, 0h 0m 4s 399ms[0m
+2024/07/19 14:25:35 [31mOverall Total      :      202 items[0m
+2024/07/19 14:25:35 Start Time         : [36m2024-07-19 14:25:30.940[0m
+2024/07/19 14:25:35 End Time           : [36m2024-07-19 14:25:35.340[0m
+2024/07/19 14:25:35 [31mTotal Process Time : 0h 0m 4s 399ms[0m
+2024/07/19 14:26:24 [33m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:26:24 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:26:25 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:26:25 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:26:25 Sent batch 1-50 of 100 for table ap_supplier (0.70 seconds)
+2024/07/19 14:26:26 Sent batch 51-100 of 100 for table ap_supplier (0.82 seconds)
+2024/07/19 14:26:26 Step 4: Sent all data to API (1.51 seconds)
+2024/07/19 14:26:26 [33m✓ Sync Table ap_supplier: data03 (0h 0m 1s 559ms, 100 items)[0m
+2024/07/19 14:26:26 [33m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:26:26 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:26:26 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:26:26 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:26:27 Sent batch 1-50 of 100 for table ar_customer (0.71 seconds)
+2024/07/19 14:26:28 Sent batch 51-100 of 100 for table ar_customer (0.78 seconds)
+2024/07/19 14:26:28 Step 4: Sent all data to API (1.49 seconds)
+2024/07/19 14:26:28 [33m✓ Sync Table ar_customer: data03 (0h 0m 1s 535ms, 100 items)[0m
+2024/07/19 14:26:28 [33m▶ Start Sync Table ic_inventory[0m: [34mdata03[0m
+2024/07/19 14:26:28 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:26:28 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:26:28 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:26:28 Sent batch 1-2 of 2 for table ic_inventory (0.85 seconds)
+2024/07/19 14:26:28 Step 4: Sent all data to API (0.85 seconds)
+2024/07/19 14:26:28 [33m✓ Sync Table ic_inventory: data03 (0h 0m 0s 921ms, 2 items)[0m
+2024/07/19 14:26:28 [35m=== Summary ===[0m
+2024/07/19 14:26:28 [34mDatabase: data03[0m
+2024/07/19 14:26:28   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 559ms
+2024/07/19 14:26:28   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 535ms
+2024/07/19 14:26:28   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 921ms
+2024/07/19 14:26:28 [33m  DB Total                      :      202 items, 0h 0m 4s 17ms[0m
+2024/07/19 14:26:28 [31mOverall Total      :      202 items[0m
+2024/07/19 14:26:28 Start Time         : [36m2024-07-19 14:26:24.978[0m
+2024/07/19 14:26:28 End Time           : [36m2024-07-19 14:26:28.995[0m
+2024/07/19 14:26:28 [31mTotal Process Time : 0h 0m 4s 17ms[0m
+2024/07/19 14:29:01 [32m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:29:01 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:29:01 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:29:01 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:29:02 Sent batch 1-50 of 100 for table ap_supplier (0.96 seconds)
+2024/07/19 14:29:03 Sent batch 51-100 of 100 for table ap_supplier (0.72 seconds)
+2024/07/19 14:29:03 Step 4: Sent all data to API (1.68 seconds)
+2024/07/19 14:29:03 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 741ms, 100 items)[0m
+2024/07/19 14:29:03 [32m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:29:03 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:29:03 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:29:03 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:29:04 Sent batch 1-50 of 100 for table ar_customer (0.76 seconds)
+2024/07/19 14:29:05 Sent batch 51-100 of 100 for table ar_customer (0.86 seconds)
+2024/07/19 14:29:05 Step 4: Sent all data to API (1.63 seconds)
+2024/07/19 14:29:05 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 684ms, 100 items)[0m
+2024/07/19 14:29:05 [32m▶ Start Sync Table ic_inventory[0m: [34mdata03[0m
+2024/07/19 14:29:05 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:29:05 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:29:05 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:29:06 Sent batch 1-2 of 2 for table ic_inventory (1.02 seconds)
+2024/07/19 14:29:06 Step 4: Sent all data to API (1.02 seconds)
+2024/07/19 14:29:06 [32m✓ Sync Table ic_inventory: data03 (0h 0m 1s 84ms, 2 items)[0m
+2024/07/19 14:29:06 [35m=== Summary ===[0m
+2024/07/19 14:29:06 [34mDatabase: data03[0m
+2024/07/19 14:29:06   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 741ms
+2024/07/19 14:29:06   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 684ms
+2024/07/19 14:29:06   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 1s 84ms
+2024/07/19 14:29:06 [33m  DB Total                      :      202 items, 0h 0m 4s 510ms[0m
+2024/07/19 14:29:06 [31mOverall Total      :      202 items[0m
+2024/07/19 14:29:06 Start Time         : [36m2024-07-19 14:29:01.674[0m
+2024/07/19 14:29:06 End Time           : [36m2024-07-19 14:29:06.185[0m
+2024/07/19 14:29:06 [31mTotal Process Time : 0h 0m 4s 510ms[0m
+2024/07/19 14:29:37 [35m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:29:37 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:29:37 Step 2: Queried data from PostgreSQL (0.04 seconds)
+2024/07/19 14:29:37 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:29:38 Sent batch 1-50 of 100 for table ap_supplier (0.81 seconds)
+2024/07/19 14:29:39 Sent batch 51-100 of 100 for table ap_supplier (1.01 seconds)
+2024/07/19 14:29:39 Step 4: Sent all data to API (1.82 seconds)
+2024/07/19 14:29:39 [32m✓ Sync Table ap_supplier: data03 (0h 0m 1s 862ms, 100 items)[0m
+2024/07/19 14:29:39 [35m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:29:39 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:29:39 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:29:39 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:29:40 Sent batch 1-50 of 100 for table ar_customer (0.75 seconds)
+2024/07/19 14:29:41 Sent batch 51-100 of 100 for table ar_customer (0.72 seconds)
+2024/07/19 14:29:41 Step 4: Sent all data to API (1.47 seconds)
+2024/07/19 14:29:41 [32m✓ Sync Table ar_customer: data03 (0h 0m 1s 536ms, 100 items)[0m
+2024/07/19 14:29:41 [35m▶ Start Sync Table ic_inventory[0m: [34mdata03[0m
+2024/07/19 14:29:41 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:29:41 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:29:41 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:29:42 Sent batch 1-2 of 2 for table ic_inventory (0.92 seconds)
+2024/07/19 14:29:42 Step 4: Sent all data to API (0.92 seconds)
+2024/07/19 14:29:42 [32m✓ Sync Table ic_inventory: data03 (0h 0m 0s 985ms, 2 items)[0m
+2024/07/19 14:29:42 [35m=== Summary ===[0m
+2024/07/19 14:29:42 [34mDatabase: data03[0m
+2024/07/19 14:29:42   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 862ms
+2024/07/19 14:29:42   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 536ms
+2024/07/19 14:29:42   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 985ms
+2024/07/19 14:29:42 [33m  DB Total                      :      202 items, 0h 0m 4s 384ms[0m
+2024/07/19 14:29:42 [31mOverall Total      :      202 items[0m
+2024/07/19 14:29:42 Start Time         : [36m2024-07-19 14:29:37.700[0m
+2024/07/19 14:29:42 End Time           : [36m2024-07-19 14:29:42.085[0m
+2024/07/19 14:29:42 [31mTotal Process Time : 0h 0m 4s 385ms[0m
+2024/07/19 14:30:53 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:30:53 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:30:53 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:30:53 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:30:53 Sent batch 1-50 of 100 for table ap_supplier (0.68 seconds)
+2024/07/19 14:30:54 Sent batch 51-100 of 100 for table ap_supplier (0.71 seconds)
+2024/07/19 14:30:54 Step 4: Sent all data to API (1.39 seconds)
+2024/07/19 14:30:54 [32m✓ Successful Table ap_supplier: data03 (0h 0m 1s 439ms, 100 items)[0m
+2024/07/19 14:30:54 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:30:54 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:30:54 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:30:54 Step 3: Processed 100 items (0.00 seconds)
+2024/07/19 14:30:55 Sent batch 1-50 of 100 for table ar_customer (0.71 seconds)
+2024/07/19 14:30:55 Sent batch 51-100 of 100 for table ar_customer (0.71 seconds)
+2024/07/19 14:30:55 Step 4: Sent all data to API (1.42 seconds)
+2024/07/19 14:30:55 [32m✓ Successful Table ar_customer: data03 (0h 0m 1s 472ms, 100 items)[0m
+2024/07/19 14:30:55 [34m▶ Start Sync Table ic_inventory[0m: [34mdata03[0m
+2024/07/19 14:30:55 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:30:56 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:30:56 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:30:56 Sent batch 1-2 of 2 for table ic_inventory (0.91 seconds)
+2024/07/19 14:30:56 Step 4: Sent all data to API (0.91 seconds)
+2024/07/19 14:30:56 [32m✓ Successful Table ic_inventory: data03 (0h 0m 0s 979ms, 2 items)[0m
+2024/07/19 14:30:56 [35m=== Summary ===[0m
+2024/07/19 14:30:56 [34mDatabase: data03[0m
+2024/07/19 14:30:56   Sync ap_supplier ToMongoDB    :      100 items, 0h 0m 1s 439ms
+2024/07/19 14:30:56   Sync ar_customer ToMongoDB    :      100 items, 0h 0m 1s 472ms
+2024/07/19 14:30:56   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 0s 979ms
+2024/07/19 14:30:56 [33m  DB Total                      :      202 items, 0h 0m 3s 891ms[0m
+2024/07/19 14:30:56 [31mOverall Total      :      202 items[0m
+2024/07/19 14:30:56 Start Time         : [36m2024-07-19 14:30:53.034[0m
+2024/07/19 14:30:56 End Time           : [36m2024-07-19 14:30:56.926[0m
+2024/07/19 14:30:56 [31mTotal Process Time : 0h 0m 3s 891ms[0m
+2024/07/19 14:32:51 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:32:51 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:32:51 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:32:51 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:32:51 Sent batch 1-50 of 165 for table ap_supplier (0.80 seconds)
+2024/07/19 14:32:52 Sent batch 51-100 of 165 for table ap_supplier (0.82 seconds)
+2024/07/19 14:32:53 Sent batch 101-150 of 165 for table ap_supplier (0.63 seconds)
+2024/07/19 14:32:53 Sent batch 151-165 of 165 for table ap_supplier (0.22 seconds)
+2024/07/19 14:32:53 Step 4: Sent all data to API (2.46 seconds)
+2024/07/19 14:32:53 [32m✓ Successful Table ap_supplier: data03 (0h 0m 2s 515ms, 165 items)[0m
+2024/07/19 14:32:53 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:32:53 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:32:53 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:32:53 Step 3: Processed 3534 items (0.03 seconds)
+2024/07/19 14:32:54 Sent batch 1-50 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:32:55 Sent batch 51-100 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:32:55 Sent batch 101-150 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:32:56 Sent batch 151-200 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:32:57 Sent batch 201-250 of 3534 for table ar_customer (0.51 seconds)
+2024/07/19 14:32:57 Sent batch 251-300 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:32:58 Sent batch 301-350 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:32:59 Sent batch 351-400 of 3534 for table ar_customer (0.73 seconds)
+2024/07/19 14:33:00 Sent batch 401-450 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:33:01 Sent batch 451-500 of 3534 for table ar_customer (0.98 seconds)
+2024/07/19 14:33:01 Sent batch 501-550 of 3534 for table ar_customer (0.95 seconds)
+2024/07/19 14:33:03 Sent batch 551-600 of 3534 for table ar_customer (1.04 seconds)
+2024/07/19 14:33:03 Sent batch 601-650 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:33:04 Sent batch 651-700 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:33:05 Sent batch 701-750 of 3534 for table ar_customer (0.86 seconds)
+2024/07/19 14:33:06 Sent batch 751-800 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:33:07 Sent batch 801-850 of 3534 for table ar_customer (1.33 seconds)
+2024/07/19 14:33:08 Sent batch 851-900 of 3534 for table ar_customer (1.03 seconds)
+2024/07/19 14:33:09 Sent batch 901-950 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:33:11 Sent batch 951-1000 of 3534 for table ar_customer (1.64 seconds)
+2024/07/19 14:33:12 Sent batch 1001-1050 of 3534 for table ar_customer (1.31 seconds)
+2024/07/19 14:33:13 Sent batch 1051-1100 of 3534 for table ar_customer (0.95 seconds)
+2024/07/19 14:33:14 Sent batch 1101-1150 of 3534 for table ar_customer (0.75 seconds)
+2024/07/19 14:33:14 Sent batch 1151-1200 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:33:15 Sent batch 1201-1250 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:33:16 Sent batch 1251-1300 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:33:18 Sent batch 1301-1350 of 3534 for table ar_customer (1.43 seconds)
+2024/07/19 14:33:20 Sent batch 1351-1400 of 3534 for table ar_customer (2.11 seconds)
+2024/07/19 14:33:21 Sent batch 1401-1450 of 3534 for table ar_customer (0.87 seconds)
+2024/07/19 14:33:21 Sent batch 1451-1500 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:33:22 Sent batch 1501-1550 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:33:24 Sent batch 1551-1600 of 3534 for table ar_customer (1.40 seconds)
+2024/07/19 14:33:25 Sent batch 1601-1650 of 3534 for table ar_customer (1.54 seconds)
+2024/07/19 14:33:26 Sent batch 1651-1700 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:33:26 Sent batch 1701-1750 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:33:27 Sent batch 1751-1800 of 3534 for table ar_customer (0.74 seconds)
+2024/07/19 14:33:28 Sent batch 1801-1850 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:33:29 Sent batch 1851-1900 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:33:30 Sent batch 1901-1950 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:33:30 Sent batch 1951-2000 of 3534 for table ar_customer (0.68 seconds)
+2024/07/19 14:33:31 Sent batch 2001-2050 of 3534 for table ar_customer (0.75 seconds)
+2024/07/19 14:33:32 Sent batch 2051-2100 of 3534 for table ar_customer (0.66 seconds)
+2024/07/19 14:33:32 Sent batch 2101-2150 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:33:33 Sent batch 2151-2200 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:33:34 Sent batch 2201-2250 of 3534 for table ar_customer (0.76 seconds)
+2024/07/19 14:33:34 Sent batch 2251-2300 of 3534 for table ar_customer (0.64 seconds)
+2024/07/19 14:33:35 Sent batch 2301-2350 of 3534 for table ar_customer (0.57 seconds)
+2024/07/19 14:33:35 Sent batch 2351-2400 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:33:36 Sent batch 2401-2450 of 3534 for table ar_customer (0.64 seconds)
+2024/07/19 14:33:37 Sent batch 2451-2500 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:33:37 Sent batch 2501-2550 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:33:38 Sent batch 2551-2600 of 3534 for table ar_customer (0.55 seconds)
+2024/07/19 14:33:39 Sent batch 2601-2650 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:33:39 Sent batch 2651-2700 of 3534 for table ar_customer (0.53 seconds)
+2024/07/19 14:33:40 Sent batch 2701-2750 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:33:40 Sent batch 2751-2800 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:33:41 Sent batch 2801-2850 of 3534 for table ar_customer (0.68 seconds)
+2024/07/19 14:33:42 Sent batch 2851-2900 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:33:42 Sent batch 2901-2950 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:33:43 Sent batch 2951-3000 of 3534 for table ar_customer (0.58 seconds)
+2024/07/19 14:33:44 Sent batch 3001-3050 of 3534 for table ar_customer (1.19 seconds)
+2024/07/19 14:33:45 Sent batch 3051-3100 of 3534 for table ar_customer (0.68 seconds)
+2024/07/19 14:33:46 Sent batch 3101-3150 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:33:46 Sent batch 3151-3200 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:33:47 Sent batch 3201-3250 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:33:48 Sent batch 3251-3300 of 3534 for table ar_customer (0.64 seconds)
+2024/07/19 14:33:48 Sent batch 3301-3350 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:33:49 Sent batch 3351-3400 of 3534 for table ar_customer (0.53 seconds)
+2024/07/19 14:33:49 Sent batch 3401-3450 of 3534 for table ar_customer (0.67 seconds)
+2024/07/19 14:33:50 Sent batch 3451-3500 of 3534 for table ar_customer (0.58 seconds)
+2024/07/19 14:33:50 Sent batch 3501-3534 of 3534 for table ar_customer (0.42 seconds)
+2024/07/19 14:33:50 Step 4: Sent all data to API (57.15 seconds)
+2024/07/19 14:33:50 [32m✓ Successful Table ar_customer: data03 (0h 0m 57s 232ms, 3534 items)[0m
+2024/07/19 14:33:50 [34m▶ Start Sync Table ic_inventory[0m: [34mdata03[0m
+2024/07/19 14:33:50 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:33:50 Step 2: Queried data from PostgreSQL (0.11 seconds)
+2024/07/19 14:33:50 Step 3: Processed 2 items (0.00 seconds)
+2024/07/19 14:33:51 Sent batch 1-2 of 2 for table ic_inventory (0.90 seconds)
+2024/07/19 14:33:51 Step 4: Sent all data to API (0.90 seconds)
+2024/07/19 14:33:51 [32m✓ Successful Table ic_inventory: data03 (0h 0m 1s 7ms, 2 items)[0m
+2024/07/19 14:33:51 [35m=== Summary ===[0m
+2024/07/19 14:33:51 [34mDatabase: data03[0m
+2024/07/19 14:33:51   Sync ap_supplier ToMongoDB    :      165 items, 0h 0m 2s 515ms
+2024/07/19 14:33:51   Sync ar_customer ToMongoDB    :     3534 items, 0h 0m 57s 232ms
+2024/07/19 14:33:51   Sync ic_inventory ToMongoDB   :        2 items, 0h 0m 1s 7ms
+2024/07/19 14:33:51 [33m  DB Total                      :     3701 items, 0h 1m 0s 756ms[0m
+2024/07/19 14:33:51 [31mOverall Total      :     3701 items[0m
+2024/07/19 14:33:51 Start Time         : [36m2024-07-19 14:32:51.124[0m
+2024/07/19 14:33:51 End Time           : [36m2024-07-19 14:33:51.881[0m
+2024/07/19 14:33:51 [31mTotal Process Time : 0h 1m 0s 756ms[0m
+2024/07/19 14:35:15 [32m=== Start synchronization process ===[0m
+2024/07/19 14:35:15 [36mStart Time: 2024-07-19 14:35:15.958[36m[0m
+2024/07/19 14:35:15 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:35:15 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:35:16 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:35:16 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:35:17 Sent batch 1-50 of 165 for table ap_supplier (1.63 seconds)
+2024/07/19 14:35:18 Sent batch 51-100 of 165 for table ap_supplier (1.29 seconds)
+2024/07/19 14:35:19 Sent batch 101-150 of 165 for table ap_supplier (1.01 seconds)
+2024/07/19 14:35:20 Sent batch 151-165 of 165 for table ap_supplier (0.25 seconds)
+2024/07/19 14:35:20 Step 4: Sent all data to API (4.17 seconds)
+2024/07/19 14:35:20 [32m✓ Successful Table ap_supplier: data03 (0h 0m 4s 213ms, 165 items)[0m
+2024/07/19 14:35:20 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:35:20 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:35:20 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:35:20 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:35:21 Sent batch 1-50 of 3534 for table ar_customer (0.83 seconds)
+2024/07/19 14:35:22 Sent batch 51-100 of 3534 for table ar_customer (1.23 seconds)
+2024/07/19 14:35:24 Sent batch 101-150 of 3534 for table ar_customer (1.93 seconds)
+2024/07/19 14:35:25 Sent batch 151-200 of 3534 for table ar_customer (1.14 seconds)
+2024/07/19 14:35:25 Sent batch 201-250 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:35:26 Sent batch 251-300 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:35:27 Sent batch 301-350 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:35:28 Sent batch 351-400 of 3534 for table ar_customer (0.90 seconds)
+2024/07/19 14:35:29 Sent batch 401-450 of 3534 for table ar_customer (0.94 seconds)
+2024/07/19 14:35:30 Sent batch 451-500 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:35:31 Sent batch 501-550 of 3534 for table ar_customer (1.02 seconds)
+2024/07/19 14:35:32 Sent batch 551-600 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:35:32 Sent batch 601-650 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:35:33 Sent batch 651-700 of 3534 for table ar_customer (1.07 seconds)
+2024/07/19 14:35:34 Sent batch 701-750 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:35:35 Sent batch 751-800 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:35:36 Sent batch 801-850 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:35:37 Sent batch 851-900 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:35:37 Sent batch 901-950 of 3534 for table ar_customer (0.76 seconds)
+2024/07/19 14:35:38 Sent batch 951-1000 of 3534 for table ar_customer (0.93 seconds)
+2024/07/19 14:35:39 Sent batch 1001-1050 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:35:40 Sent batch 1051-1100 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:35:41 Sent batch 1101-1150 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:35:42 Sent batch 1151-1200 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:35:42 Sent batch 1201-1250 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:35:43 Sent batch 1251-1300 of 3534 for table ar_customer (1.03 seconds)
+2024/07/19 14:35:44 Sent batch 1301-1350 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:35:45 Sent batch 1351-1400 of 3534 for table ar_customer (0.69 seconds)
+2024/07/19 14:35:46 Sent batch 1401-1450 of 3534 for table ar_customer (1.03 seconds)
+2024/07/19 14:35:47 Sent batch 1451-1500 of 3534 for table ar_customer (1.24 seconds)
+2024/07/19 14:35:48 Sent batch 1501-1550 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:35:49 Sent batch 1551-1600 of 3534 for table ar_customer (0.91 seconds)
+2024/07/19 14:35:50 Sent batch 1601-1650 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:35:51 Sent batch 1651-1700 of 3534 for table ar_customer (0.85 seconds)
+2024/07/19 14:35:51 Sent batch 1701-1750 of 3534 for table ar_customer (0.69 seconds)
+2024/07/19 14:35:52 Sent batch 1751-1800 of 3534 for table ar_customer (0.67 seconds)
+2024/07/19 14:35:53 Sent batch 1801-1850 of 3534 for table ar_customer (0.66 seconds)
+2024/07/19 14:35:53 Sent batch 1851-1900 of 3534 for table ar_customer (0.53 seconds)
+2024/07/19 14:35:54 Sent batch 1901-1950 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:35:54 Sent batch 1951-2000 of 3534 for table ar_customer (0.58 seconds)
+2024/07/19 14:35:55 Sent batch 2001-2050 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:35:56 Sent batch 2051-2100 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:35:56 Sent batch 2101-2150 of 3534 for table ar_customer (0.67 seconds)
+2024/07/19 14:35:57 Sent batch 2151-2200 of 3534 for table ar_customer (0.66 seconds)
+2024/07/19 14:35:58 Sent batch 2201-2250 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:35:58 Sent batch 2251-2300 of 3534 for table ar_customer (0.59 seconds)
+2024/07/19 14:35:59 Sent batch 2301-2350 of 3534 for table ar_customer (0.74 seconds)
+2024/07/19 14:36:00 Sent batch 2351-2400 of 3534 for table ar_customer (0.66 seconds)
+2024/07/19 14:36:00 Sent batch 2401-2450 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:36:01 Sent batch 2451-2500 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:36:02 Sent batch 2501-2550 of 3534 for table ar_customer (0.87 seconds)
+2024/07/19 14:36:03 Sent batch 2551-2600 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:36:03 Sent batch 2601-2650 of 3534 for table ar_customer (0.74 seconds)
+2024/07/19 14:36:05 Sent batch 2651-2700 of 3534 for table ar_customer (1.71 seconds)
+2024/07/19 14:36:07 Sent batch 2701-2750 of 3534 for table ar_customer (2.28 seconds)
+2024/07/19 14:36:08 Sent batch 2751-2800 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:36:09 Sent batch 2801-2850 of 3534 for table ar_customer (0.83 seconds)
+2024/07/19 14:36:11 Sent batch 2851-2900 of 3534 for table ar_customer (1.63 seconds)
+2024/07/19 14:36:11 Sent batch 2901-2950 of 3534 for table ar_customer (0.76 seconds)
+2024/07/19 14:36:12 Sent batch 2951-3000 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:36:30 [32m=== Start synchronization process ===[0m
+2024/07/19 14:36:30 [36mStart Time: 2024-07-19 14:36:30.467[36m[0m
+2024/07/19 14:36:30 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:36:30 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:36:30 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:36:30 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:36:31 Sent batch 1-50 of 165 for table ap_supplier (0.78 seconds)
+2024/07/19 14:36:31 Sent batch 51-100 of 165 for table ap_supplier (0.66 seconds)
+2024/07/19 14:36:32 Sent batch 101-150 of 165 for table ap_supplier (0.71 seconds)
+2024/07/19 14:36:32 Sent batch 151-165 of 165 for table ap_supplier (0.22 seconds)
+2024/07/19 14:36:32 Step 4: Sent all data to API (2.37 seconds)
+2024/07/19 14:36:32 [32m✓ Successful Table ap_supplier: data03 (0h 0m 2s 420ms, 165 items)[0m
+2024/07/19 14:36:32 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:36:32 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:36:32 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:36:32 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:36:33 Sent batch 1-50 of 3534 for table ar_customer (0.75 seconds)
+2024/07/19 14:36:34 Sent batch 51-100 of 3534 for table ar_customer (0.73 seconds)
+2024/07/19 14:36:35 Sent batch 101-150 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:36:35 Sent batch 151-200 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:36:36 Sent batch 201-250 of 3534 for table ar_customer (0.53 seconds)
+2024/07/19 14:36:37 Sent batch 251-300 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:36:38 Sent batch 301-350 of 3534 for table ar_customer (0.73 seconds)
+2024/07/19 14:36:38 Sent batch 351-400 of 3534 for table ar_customer (0.75 seconds)
+2024/07/19 14:36:39 Sent batch 401-450 of 3534 for table ar_customer (0.83 seconds)
+2024/07/19 14:36:40 Sent batch 451-500 of 3534 for table ar_customer (0.90 seconds)
+2024/07/19 14:36:41 Sent batch 501-550 of 3534 for table ar_customer (1.00 seconds)
+2024/07/19 14:36:42 Sent batch 551-600 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:36:42 Sent batch 601-650 of 3534 for table ar_customer (0.67 seconds)
+2024/07/19 14:36:43 Sent batch 651-700 of 3534 for table ar_customer (0.83 seconds)
+2024/07/19 14:36:44 Sent batch 701-750 of 3534 for table ar_customer (0.80 seconds)
+2024/07/19 14:36:45 Sent batch 751-800 of 3534 for table ar_customer (0.84 seconds)
+2024/07/19 14:36:46 Sent batch 801-850 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:36:47 Sent batch 851-900 of 3534 for table ar_customer (0.74 seconds)
+2024/07/19 14:36:47 Sent batch 901-950 of 3534 for table ar_customer (0.85 seconds)
+2024/07/19 14:36:48 Sent batch 951-1000 of 3534 for table ar_customer (0.91 seconds)
+2024/07/19 14:36:49 Sent batch 1001-1050 of 3534 for table ar_customer (0.88 seconds)
+2024/07/19 14:36:50 Sent batch 1051-1100 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:36:51 Sent batch 1101-1150 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:36:52 Sent batch 1151-1200 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:36:52 Sent batch 1201-1250 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:36:53 Sent batch 1251-1300 of 3534 for table ar_customer (1.03 seconds)
+2024/07/19 14:36:54 Sent batch 1301-1350 of 3534 for table ar_customer (0.85 seconds)
+2024/07/19 14:36:55 Sent batch 1351-1400 of 3534 for table ar_customer (0.68 seconds)
+2024/07/19 14:36:56 Sent batch 1401-1450 of 3534 for table ar_customer (0.69 seconds)
+2024/07/19 14:36:57 Sent batch 1451-1500 of 3534 for table ar_customer (0.83 seconds)
+2024/07/19 14:36:57 Sent batch 1501-1550 of 3534 for table ar_customer (0.94 seconds)
+2024/07/19 14:36:58 Sent batch 1551-1600 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:36:59 Sent batch 1601-1650 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:37:00 Sent batch 1651-1700 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:37:01 Sent batch 1701-1750 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:37:01 Sent batch 1751-1800 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:37:02 Sent batch 1801-1850 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:37:03 Sent batch 1851-1900 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:37:03 Sent batch 1901-1950 of 3534 for table ar_customer (0.64 seconds)
+2024/07/19 14:37:04 Sent batch 1951-2000 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:37:05 Sent batch 2001-2050 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:37:05 Sent batch 2051-2100 of 3534 for table ar_customer (0.67 seconds)
+2024/07/19 14:37:06 Sent batch 2101-2150 of 3534 for table ar_customer (0.67 seconds)
+2024/07/19 14:37:08 Sent batch 2151-2200 of 3534 for table ar_customer (1.80 seconds)
+2024/07/19 14:37:08 Sent batch 2201-2250 of 3534 for table ar_customer (0.69 seconds)
+2024/07/19 14:37:09 Sent batch 2251-2300 of 3534 for table ar_customer (0.62 seconds)
+2024/07/19 14:37:11 Sent batch 2301-2350 of 3534 for table ar_customer (1.53 seconds)
+2024/07/19 14:37:12 Sent batch 2351-2400 of 3534 for table ar_customer (1.34 seconds)
+2024/07/19 14:37:13 Sent batch 2401-2450 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:37:13 Sent batch 2451-2500 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:37:14 Sent batch 2501-2550 of 3534 for table ar_customer (0.67 seconds)
+2024/07/19 14:37:14 Sent batch 2551-2600 of 3534 for table ar_customer (0.64 seconds)
+2024/07/19 14:37:15 Sent batch 2601-2650 of 3534 for table ar_customer (0.60 seconds)
+2024/07/19 14:37:16 Sent batch 2651-2700 of 3534 for table ar_customer (0.56 seconds)
+2024/07/19 14:37:18 Sent batch 2701-2750 of 3534 for table ar_customer (2.16 seconds)
+2024/07/19 14:37:18 Sent batch 2751-2800 of 3534 for table ar_customer (0.58 seconds)
+2024/07/19 14:37:19 Sent batch 2801-2850 of 3534 for table ar_customer (0.64 seconds)
+2024/07/19 14:37:20 Sent batch 2851-2900 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:37:20 Sent batch 2901-2950 of 3534 for table ar_customer (0.69 seconds)
+2024/07/19 14:38:31 [32m=== Start synchronization process ===[0m
+2024/07/19 14:38:31 [36mStart Time: 2024-07-19 14:38:31.463[36m[0m
+2024/07/19 14:38:31 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:38:31 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:38:31 Step 2: Queried data from PostgreSQL (0.04 seconds)
+2024/07/19 14:38:31 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:38:32 Sent batch 1-50 of 165 for table ap_supplier (0.69 seconds)
+2024/07/19 14:38:32 Sent batch 51-100 of 165 for table ap_supplier (0.62 seconds)
+2024/07/19 14:38:33 Sent batch 101-150 of 165 for table ap_supplier (0.66 seconds)
+2024/07/19 14:38:33 Sent batch 151-165 of 165 for table ap_supplier (0.21 seconds)
+2024/07/19 14:38:33 Step 4: Sent all data to API (2.19 seconds)
+2024/07/19 14:38:33 [32m✓ Successful Table ap_supplier: data03 (0h 0m 2s 233ms, 165 items)[0m
+2024/07/19 14:38:33 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:38:33 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:38:33 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:38:33 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:38:34 Sent batch 1-50 of 3534 for table ar_customer (0.85 seconds)
+2024/07/19 14:38:35 Sent batch 51-100 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:38:36 Sent batch 101-150 of 3534 for table ar_customer (0.75 seconds)
+2024/07/19 14:38:36 Sent batch 151-200 of 3534 for table ar_customer (0.68 seconds)
+2024/07/19 14:38:37 Sent batch 201-250 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:38:38 Sent batch 251-300 of 3534 for table ar_customer (0.62 seconds)
+2024/07/19 14:38:38 Sent batch 301-350 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:38:39 Sent batch 351-400 of 3534 for table ar_customer (1.05 seconds)
+2024/07/19 14:38:40 Sent batch 401-450 of 3534 for table ar_customer (0.89 seconds)
+2024/07/19 14:38:41 Sent batch 451-500 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:38:42 Sent batch 501-550 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:38:43 Sent batch 551-600 of 3534 for table ar_customer (0.66 seconds)
+2024/07/19 14:38:43 Sent batch 601-650 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:38:44 Sent batch 651-700 of 3534 for table ar_customer (0.75 seconds)
+2024/07/19 14:38:45 Sent batch 701-750 of 3534 for table ar_customer (1.00 seconds)
+2024/07/19 14:38:46 Sent batch 751-800 of 3534 for table ar_customer (0.75 seconds)
+2024/07/19 14:38:47 Sent batch 801-850 of 3534 for table ar_customer (0.66 seconds)
+2024/07/19 14:38:47 Sent batch 851-900 of 3534 for table ar_customer (0.74 seconds)
+2024/07/19 14:38:48 Sent batch 901-950 of 3534 for table ar_customer (0.70 seconds)
+2024/07/19 14:40:09 [32m=== Start synchronization process ===[0m
+2024/07/19 14:40:09 [36mStart Time: 2024-07-19 14:40:09.776[36m[0m
+2024/07/19 14:40:09 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:40:09 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:40:09 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:40:09 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:40:11 Sent batch 1-50 of 165 for table ap_supplier (1.94 seconds)
+2024/07/19 14:40:12 Sent batch 51-100 of 165 for table ap_supplier (0.76 seconds)
+2024/07/19 14:40:13 Sent batch 101-150 of 165 for table ap_supplier (1.33 seconds)
+2024/07/19 14:40:14 Sent batch 151-165 of 165 for table ap_supplier (0.61 seconds)
+2024/07/19 14:40:14 Step 4: Sent all data to API (4.65 seconds)
+2024/07/19 14:40:14 [32m✓ Successful Table ap_supplier: data03 (0h 0m 4s 693ms, 165 items)[0m
+2024/07/19 14:40:14 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:40:14 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:42:16 [32m=== Start synchronization process ===[0m
+2024/07/19 14:42:16 [36mStart Time: 2024-07-19 14:42:16.235[36m[0m
+2024/07/19 14:42:16 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:42:16 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:42:16 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:42:16 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:42:17 Sent batch 1-50 of 165 for table ap_supplier (1.67 seconds)
+2024/07/19 14:42:18 Sent batch 51-100 of 165 for table ap_supplier (0.72 seconds)
+2024/07/19 14:42:19 Sent batch 101-150 of 165 for table ap_supplier (0.73 seconds)
+2024/07/19 14:42:19 Sent batch 151-165 of 165 for table ap_supplier (0.24 seconds)
+2024/07/19 14:42:19 Step 4: Sent all data to API (3.36 seconds)
+2024/07/19 14:42:19 [32m✓ Successful Table ap_supplier: data03 (0h 0m 3s 421ms, 165 items)[0m
+2024/07/19 14:42:19 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:42:19 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:42:19 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:42:19 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:42:20 Sent batch 1-50 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:42:22 Sent batch 51-100 of 3534 for table ar_customer (1.77 seconds)
+2024/07/19 14:42:23 Sent batch 101-150 of 3534 for table ar_customer (1.61 seconds)
+2024/07/19 14:42:25 Sent batch 151-200 of 3534 for table ar_customer (1.11 seconds)
+2024/07/19 14:42:25 Sent batch 201-250 of 3534 for table ar_customer (0.57 seconds)
+2024/07/19 14:42:26 Sent batch 251-300 of 3534 for table ar_customer (0.58 seconds)
+2024/07/19 14:42:26 Sent batch 301-350 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:42:27 Sent batch 351-400 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:42:28 Sent batch 401-450 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:42:29 Sent batch 451-500 of 3534 for table ar_customer (1.02 seconds)
+2024/07/19 14:42:30 Sent batch 501-550 of 3534 for table ar_customer (1.03 seconds)
+2024/07/19 14:42:31 Sent batch 551-600 of 3534 for table ar_customer (0.76 seconds)
+2024/07/19 14:42:32 Sent batch 601-650 of 3534 for table ar_customer (0.88 seconds)
+2024/07/19 14:42:33 Sent batch 651-700 of 3534 for table ar_customer (0.83 seconds)
+2024/07/19 14:42:34 Sent batch 701-750 of 3534 for table ar_customer (0.91 seconds)
+2024/07/19 14:42:35 Sent batch 751-800 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:42:35 Sent batch 801-850 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:42:36 Sent batch 851-900 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:42:37 Sent batch 901-950 of 3534 for table ar_customer (1.02 seconds)
+2024/07/19 14:42:38 Sent batch 951-1000 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:42:39 Sent batch 1001-1050 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:42:40 Sent batch 1051-1100 of 3534 for table ar_customer (0.96 seconds)
+2024/07/19 14:42:40 Sent batch 1101-1150 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:42:41 Sent batch 1151-1200 of 3534 for table ar_customer (0.66 seconds)
+2024/07/19 14:42:42 Sent batch 1201-1250 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:42:43 Sent batch 1251-1300 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:42:43 Sent batch 1301-1350 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:42:44 Sent batch 1351-1400 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:42:45 Sent batch 1401-1450 of 3534 for table ar_customer (0.85 seconds)
+2024/07/19 14:42:46 Sent batch 1451-1500 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:42:47 Sent batch 1501-1550 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:42:47 Sent batch 1551-1600 of 3534 for table ar_customer (0.89 seconds)
+2024/07/19 14:42:48 Sent batch 1601-1650 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:42:49 Sent batch 1651-1700 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:42:50 Sent batch 1701-1750 of 3534 for table ar_customer (0.68 seconds)
+2024/07/19 14:42:50 Sent batch 1751-1800 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:42:51 Sent batch 1801-1850 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:42:52 Sent batch 1851-1900 of 3534 for table ar_customer (0.59 seconds)
+2024/07/19 14:42:52 Sent batch 1901-1950 of 3534 for table ar_customer (0.74 seconds)
+2024/07/19 14:42:53 Sent batch 1951-2000 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:42:54 Sent batch 2001-2050 of 3534 for table ar_customer (0.61 seconds)
+2024/07/19 14:42:54 Sent batch 2051-2100 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:42:55 Sent batch 2101-2150 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:42:56 Sent batch 2151-2200 of 3534 for table ar_customer (0.65 seconds)
+2024/07/19 14:42:56 Sent batch 2201-2250 of 3534 for table ar_customer (0.71 seconds)
+2024/07/19 14:42:57 Sent batch 2251-2300 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:42:58 Sent batch 2301-2350 of 3534 for table ar_customer (0.72 seconds)
+2024/07/19 14:42:59 Sent batch 2351-2400 of 3534 for table ar_customer (0.69 seconds)
+2024/07/19 14:43:00 Sent batch 2401-2450 of 3534 for table ar_customer (1.00 seconds)
+2024/07/19 14:43:00 Sent batch 2451-2500 of 3534 for table ar_customer (0.63 seconds)
+2024/07/19 14:43:01 Sent batch 2501-2550 of 3534 for table ar_customer (0.80 seconds)
+2024/07/19 14:43:02 Sent batch 2551-2600 of 3534 for table ar_customer (0.96 seconds)
+2024/07/19 14:43:03 Sent batch 2601-2650 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:43:04 Sent batch 2651-2700 of 3534 for table ar_customer (0.57 seconds)
+2024/07/19 14:43:04 Sent batch 2701-2750 of 3534 for table ar_customer (0.78 seconds)
+2024/07/19 14:43:05 Sent batch 2751-2800 of 3534 for table ar_customer (0.79 seconds)
+2024/07/19 14:43:06 Sent batch 2801-2850 of 3534 for table ar_customer (0.68 seconds)
+2024/07/19 14:43:07 Sent batch 2851-2900 of 3534 for table ar_customer (0.74 seconds)
+2024/07/19 14:43:08 Sent batch 2901-2950 of 3534 for table ar_customer (0.80 seconds)
+2024/07/19 14:43:08 Sent batch 2951-3000 of 3534 for table ar_customer (0.84 seconds)
+2024/07/19 14:43:09 Sent batch 3001-3050 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:43:11 Sent batch 3051-3100 of 3534 for table ar_customer (2.08 seconds)
+2024/07/19 14:43:12 Sent batch 3101-3150 of 3534 for table ar_customer (1.02 seconds)
+2024/07/19 14:43:13 Sent batch 3151-3200 of 3534 for table ar_customer (1.02 seconds)
+2024/07/19 14:43:14 Sent batch 3201-3250 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:43:15 Sent batch 3251-3300 of 3534 for table ar_customer (0.77 seconds)
+2024/07/19 14:43:16 Sent batch 3301-3350 of 3534 for table ar_customer (1.08 seconds)
+2024/07/19 14:44:23 [32m=== Start synchronization process ===[0m
+2024/07/19 14:44:23 [36mStart Time: 2024-07-19 14:44:23.600[36m[0m
+2024/07/19 14:44:23 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:44:23 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:44:23 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:44:23 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:44:24 Sent batch 1-50 of 165 for table ap_supplier (0.79 seconds)
+2024/07/19 14:44:25 Sent batch 51-100 of 165 for table ap_supplier (0.72 seconds)
+2024/07/19 14:44:25 Sent batch 101-150 of 165 for table ap_supplier (0.82 seconds)
+2024/07/19 14:44:26 Sent batch 151-165 of 165 for table ap_supplier (0.22 seconds)
+2024/07/19 14:44:26 Step 4: Sent all data to API (2.55 seconds)
+2024/07/19 14:44:26 [32m✓ Successful Table ap_supplier: data03 (0h 0m 2s 593ms, 165 items)[0m
+2024/07/19 14:44:26 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:44:26 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:44:26 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:44:26 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:44:27 Sent batch 1-50 of 3534 for table ar_customer (0.99 seconds)
+2024/07/19 14:44:28 Sent batch 51-100 of 3534 for table ar_customer (0.85 seconds)
+2024/07/19 14:44:28 Sent batch 101-150 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:44:29 Sent batch 151-200 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:44:30 Sent batch 201-250 of 3534 for table ar_customer (0.62 seconds)
+2024/07/19 14:44:31 Sent batch 251-300 of 3534 for table ar_customer (0.81 seconds)
+2024/07/19 14:44:32 Sent batch 301-350 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:44:32 Sent batch 351-400 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:44:33 Sent batch 401-450 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:44:34 Sent batch 451-500 of 3534 for table ar_customer (0.95 seconds)
+2024/07/19 14:44:35 Sent batch 501-550 of 3534 for table ar_customer (1.00 seconds)
+2024/07/19 14:44:36 Sent batch 551-600 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:47:08 [32m=== Start synchronization process ===[0m
+2024/07/19 14:47:08 [36mStart Time: 2024-07-19 14:47:08.989[36m[0m
+2024/07/19 14:47:08 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:47:08 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:47:09 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:47:09 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:47:10 Sent batch 1-50 of 165 for table ap_supplier (1.80 seconds)
+2024/07/19 14:47:11 Sent batch 51-100 of 165 for table ap_supplier (0.99 seconds)
+2024/07/19 14:47:12 Sent batch 101-150 of 165 for table ap_supplier (0.90 seconds)
+2024/07/19 14:47:13 Sent batch 151-165 of 165 for table ap_supplier (0.36 seconds)
+2024/07/19 14:47:13 Step 4: Sent all data to API (4.06 seconds)
+2024/07/19 14:47:13 [32m✓ Successful Table ap_supplier: data03 (0h 0m 4s 106ms, 165 items)[0m
+2024/07/19 14:47:13 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:47:13 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:47:13 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:47:13 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:47:15 Sent batch 1-50 of 3534 for table ar_customer (1.87 seconds)
+2024/07/19 14:47:31 [32m=== Start synchronization process ===[0m
+2024/07/19 14:47:31 [36mStart Time: 2024-07-19 14:47:31.653[36m[0m
+2024/07/19 14:47:31 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:47:31 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:47:31 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:47:31 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:47:32 Sent batch 1-50 of 165 for table ap_supplier (1.06 seconds)
+2024/07/19 14:47:33 Sent batch 51-100 of 165 for table ap_supplier (0.92 seconds)
+2024/07/19 14:47:34 Sent batch 101-150 of 165 for table ap_supplier (1.02 seconds)
+2024/07/19 14:47:35 Sent batch 151-165 of 165 for table ap_supplier (0.41 seconds)
+2024/07/19 14:47:35 Step 4: Sent all data to API (3.41 seconds)
+2024/07/19 14:47:35 [32m✓ Successful Table ap_supplier: data03 (0h 0m 3s 457ms, 165 items)[0m
+2024/07/19 14:47:35 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:47:35 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:47:35 Step 2: Queried data from PostgreSQL (0.06 seconds)
+2024/07/19 14:47:35 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:47:36 Sent batch 1-50 of 3534 for table ar_customer (0.95 seconds)
+2024/07/19 14:47:37 Sent batch 51-100 of 3534 for table ar_customer (1.13 seconds)
+2024/07/19 14:47:38 Sent batch 101-150 of 3534 for table ar_customer (0.96 seconds)
+2024/07/19 14:47:39 Sent batch 151-200 of 3534 for table ar_customer (0.99 seconds)
+2024/07/19 14:47:40 Sent batch 201-250 of 3534 for table ar_customer (0.82 seconds)
+2024/07/19 14:47:40 Sent batch 251-300 of 3534 for table ar_customer (0.92 seconds)
+2024/07/19 14:47:41 Sent batch 301-350 of 3534 for table ar_customer (1.02 seconds)
+2024/07/19 14:47:43 Sent batch 351-400 of 3534 for table ar_customer (1.33 seconds)
+2024/07/19 14:47:44 Sent batch 401-450 of 3534 for table ar_customer (1.23 seconds)
+2024/07/19 14:47:45 Sent batch 451-500 of 3534 for table ar_customer (1.23 seconds)
+2024/07/19 14:47:46 Sent batch 501-550 of 3534 for table ar_customer (1.13 seconds)
+2024/07/19 14:48:04 [32m=== Start synchronization process ===[0m
+2024/07/19 14:48:04 [36mStart Time: 2024-07-19 14:48:04.904[36m[0m
+2024/07/19 14:48:04 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:48:04 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:48:04 Step 2: Queried data from PostgreSQL (0.07 seconds)
+2024/07/19 14:48:04 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:48:05 Sent batch 1-50 of 165 for table ap_supplier (0.76 seconds)
+2024/07/19 14:48:06 Sent batch 51-100 of 165 for table ap_supplier (1.22 seconds)
+2024/07/19 14:48:13 [32m=== Start synchronization process ===[0m
+2024/07/19 14:48:13 [36mStart Time: 2024-07-19 14:48:13.151[36m[0m
+2024/07/19 14:48:13 [34m▶ Start Sync Table ap_supplier[0m: [34mdata03[0m
+2024/07/19 14:48:13 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:48:13 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:48:13 Step 3: Processed 165 items (0.00 seconds)
+2024/07/19 14:48:15 Sent batch 1-50 of 165 for table ap_supplier (2.36 seconds)
+2024/07/19 14:48:16 Sent batch 51-100 of 165 for table ap_supplier (0.94 seconds)
+2024/07/19 14:48:17 Sent batch 101-150 of 165 for table ap_supplier (0.67 seconds)
+2024/07/19 14:48:17 Sent batch 151-165 of 165 for table ap_supplier (0.22 seconds)
+2024/07/19 14:48:17 Step 4: Sent all data to API (4.19 seconds)
+2024/07/19 14:48:17 [32m✓ Successful Table ap_supplier: data03 (0h 0m 4s 243ms, 165 items)[0m
+2024/07/19 14:48:17 [34m▶ Start Sync Table ar_customer[0m: [34mdata03[0m
+2024/07/19 14:48:17 Step 1: Connected to PostgreSQL (0.00 seconds)
+2024/07/19 14:48:17 Step 2: Queried data from PostgreSQL (0.05 seconds)
+2024/07/19 14:48:17 Step 3: Processed 3534 items (0.02 seconds)
+2024/07/19 14:48:18 Sent batch 1-50 of 3534 for table ar_customer (1.36 seconds)

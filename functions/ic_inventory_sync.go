@@ -5,21 +5,23 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"smlsynctodede/database"
+	"smlsynctodede/logging"
 	"smlsynctodede/models"
-	"smlsynctodede/myglobal"
+	"smlsynctodede/utils"
 	"time"
 )
 
-func SyncIcInventoryToMongoDB(database models.DatabaseModel, apiKey string) error {
+func SyncIcInventoryToMongoDB(databases models.DatabaseModel, apiKey string) error {
 	tableName := "ic_inventory"
 	start := time.Now()
-	log.Printf("▶ Start Sync Table %s%s%s: %s", myglobal.ColorYellow, tableName, myglobal.ColorReset, database.DatabaseName)
+	logging.LogStartSync(tableName, databases.DatabaseName)
 
 	// Step 1: Connect to PostgreSQL
 	stepStart := time.Now()
-	db, err := sql.Open("postgres", myglobal.GetPostgreSQLConnectionString(database.DatabaseName))
+	db, err := sql.Open("postgres", database.GetPostgreSQLConnectionString(databases.DatabaseName))
 	if err != nil {
-		myglobal.LogError(fmt.Sprintf("Error connecting to PostgreSQL for table %s", tableName), err)
+		logging.LogError(fmt.Sprintf("Error connecting to PostgreSQL for table %s", tableName), err)
 		return err
 	}
 	defer db.Close()
@@ -49,7 +51,7 @@ func SyncIcInventoryToMongoDB(database models.DatabaseModel, apiKey string) erro
 		) AS temp1
 	`)
 	if err != nil {
-		myglobal.LogError(fmt.Sprintf("Error querying PostgreSQL for table %s", tableName), err)
+		logging.LogError(fmt.Sprintf("Error querying PostgreSQL for table %s", tableName), err)
 		return err
 	}
 	defer rows.Close()
@@ -119,7 +121,7 @@ func SyncIcInventoryToMongoDB(database models.DatabaseModel, apiKey string) erro
 	batchSize := 50
 	totalItems := len(inventories)
 	for i := 0; i < totalItems; i += batchSize {
-		batchStart := time.Now() // เพิ่มจุดเริ่มต้นในการจับเวลา
+		batchStart := time.Now()
 		end := i + batchSize
 		if end > totalItems {
 			end = totalItems
@@ -131,35 +133,35 @@ func SyncIcInventoryToMongoDB(database models.DatabaseModel, apiKey string) erro
 			Message string `json:"message"`
 		}
 
-		responseBody, err := myglobal.SendDataToAPI("productbarcode", apiKey, batch)
+		responseBody, err := utils.SendDataToAPI("productbarcode", apiKey, batch)
 		if err != nil {
 			if err.Error() == "API request failed with status code 401: {\"message\":\"Token Invalid.\",\"success\":false}" {
-				myglobal.LogError("Authentication failed. Please check your API key.", fmt.Errorf(string(responseBody)))
+				logging.LogError("Authentication failed. Please check your API key.", fmt.Errorf(string(responseBody)))
 				return err // Return error to stop the synchronization process
 			}
-			myglobal.LogError(fmt.Sprintf("Error sending data to API for table %s (batch %d-%d)", tableName, i+1, end), err)
+			logging.LogError(fmt.Sprintf("Error sending data to API for table %s (batch %d-%d)", tableName, i+1, end), err)
 			return err // Return error to stop the synchronization process
 		}
 
 		err = json.Unmarshal(responseBody, &apiResponse)
 		if err != nil {
-			myglobal.LogError(fmt.Sprintf("Error parsing API response for table %s (batch %d-%d)", tableName, i+1, end), err)
+			logging.LogError(fmt.Sprintf("Error parsing API response for table %s (batch %d-%d)", tableName, i+1, end), err)
 			continue
 		}
 
 		if !apiResponse.Success {
-			myglobal.LogError(fmt.Sprintf("API request failed for table %s (batch %d-%d)", tableName, i+1, end), fmt.Errorf(apiResponse.Message))
+			logging.LogError(fmt.Sprintf("API request failed for table %s (batch %d-%d)", tableName, i+1, end), fmt.Errorf(apiResponse.Message))
 			continue
 		}
 
-		batchDuration := time.Since(batchStart) // เพิ่มจุดสิ้นสุดในการจับเวลา
+		batchDuration := time.Since(batchStart)
 		log.Printf("Sent batch %d-%d of %d for table %s (%.2f seconds)", i+1, end, totalItems, tableName, batchDuration.Seconds())
 	}
 	log.Printf("Step 4: Sent all data to API (%.2f seconds)", time.Since(stepStart).Seconds())
 
 	duration := time.Since(start)
-	myglobal.LogSuccess(fmt.Sprintf("Sync Table %s", tableName), database.DatabaseName, duration, totalItems)
-	myglobal.LogResult(database.DatabaseName, fmt.Sprintf("Sync %s ToMongoDB", tableName), duration, totalItems)
+	logging.LogSuccess(fmt.Sprintf("Successful Table %s", tableName), databases.DatabaseName, duration, totalItems)
+	logging.LogResult(databases.DatabaseName, fmt.Sprintf("Sync %s ToMongoDB", tableName), duration, totalItems)
 
 	return nil
 }

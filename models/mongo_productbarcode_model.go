@@ -14,3 +14,15 @@ type MongoProductBarcodeModel struct {
 	GroupNames    []LanguageNameModel `json:"groupnames"`
 	Prices        []PriceModel        `json:"prices"`
 }
+
+type LanguageNameModel struct {
+	Code     string `json:"code"`
+	Name     string `json:"name"`
+	Isauto   bool   `json:"isauto"`
+	Isdelete bool   `json:"isdelete"`
+}
+
+type PriceModel struct {
+	KeyNumber int     `json:"keynumber"`
+	Price     float64 `json:"price"`
+}

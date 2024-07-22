@@ -24,7 +24,27 @@ type DatabaseConfig struct {
 	Name string `yaml:"name"`
 }
 
+type PartService struct {
+	ServiceName string `yaml:"service_name"`
+	PartName    string `yaml:"part_name"`
+}
+
 var AppConfig Config
+
+var PartServices = []PartService{
+	{
+		ServiceName: "creditor",
+		PartName:    "debtaccount/creditor/bulk",
+	},
+	{
+		ServiceName: "debtor",
+		PartName:    "debtaccount/debtor/bulk",
+	},
+	{
+		ServiceName: "productbarcode",
+		PartName:    "product/barcode/bulk",
+	},
+}
 
 func LoadConfig(filename string) error {
 	content, err := os.ReadFile(filename)

@@ -1,38 +1,18 @@
-package myglobal
+package logging
 
 import (
 	"fmt"
 	"log"
-	"smlsynctodede/config"
 	"smlsynctodede/models"
 	"sort"
-	"strconv"
 	"strings"
 	"sync"
 	"time"
-
-	"github.com/google/uuid"
 )
-
-var PartServices = []models.PartService{
-	{
-		ServiceName: "creditor",
-		PartName:    "debtaccount/creditor/bulk",
-	},
-	{
-		ServiceName: "debtor",
-		PartName:    "debtaccount/debtor/bulk",
-	},
-	{
-		ServiceName: "productbarcode",
-		PartName:    "product/barcode/bulk",
-	},
-}
 
 var results []models.SyncResult
 var resultMutex sync.Mutex
 
-// ANSI color codes
 const (
 	ColorReset  = "\033[0m"
 	ColorRed    = "\033[31m"
@@ -42,31 +22,6 @@ const (
 	ColorPurple = "\033[35m"
 	ColorCyan   = "\033[36m"
 )
-
-// GetPostgreSQLConnectionString returns the connection string for PostgreSQL
-func GetPostgreSQLConnectionString(dbName string) string {
-	return fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		config.AppConfig.Database.Host,
-		config.AppConfig.Database.Port,
-		config.AppConfig.Database.User,
-		config.AppConfig.Database.Password,
-		dbName)
-}
-
-// GetFullAPIURL returns the full API URL for a given service
-func GetFullAPIURL(serviceName string) string {
-	for _, part := range PartServices {
-		if part.ServiceName == serviceName {
-			return config.AppConfig.API.BaseURL + part.PartName
-		}
-	}
-	return ""
-}
-
-// GenerateGUID สร้าง GUID ใหม่
-func GenerateGUID() string {
-	return uuid.New().String()
-}
 
 // InitResults initializes the results slice
 func InitResults() {
@@ -154,6 +109,10 @@ func FormatDuration(d time.Duration) string {
 	return fmt.Sprintf("%ds %dms", int(s), int(ms))
 }
 
+func LogStartSync(tableName, databaseName string) {
+	log.Printf("%s▶ Start Sync Table %s%s: %s%s%s", ColorBlue, tableName, ColorReset, ColorBlue, databaseName, ColorReset)
+}
+
 func LogError(message string, err error) {
 	log.Printf("%s✗ %s: %v%s", ColorRed, message, err, ColorReset)
 }
@@ -161,22 +120,4 @@ func LogError(message string, err error) {
 func LogSuccess(operation, databaseName string, duration time.Duration, itemCount int) {
 	log.Printf("%s✓ %s: %s (%s, %d items)%s",
 		ColorGreen, operation, databaseName, FormatDuration(duration), itemCount, ColorReset)
-}
-
-func GetIntInput(prompt string) int {
-	for {
-		input := getUserInput(prompt)
-		num, err := strconv.Atoi(input)
-		if err == nil {
-			return num
-		}
-		fmt.Println("Invalid input. Please enter a valid number.")
-	}
-}
-
-func getUserInput(prompt string) string {
-	fmt.Print(prompt)
-	var input string
-	fmt.Scanln(&input)
-	return input
 }
