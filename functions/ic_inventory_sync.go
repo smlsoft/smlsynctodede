@@ -47,7 +47,7 @@ func SyncIcInventoryToMongoDB(databases models.DatabaseModel, apiKey string) err
 		LEFT JOIN ic_unit AS unit ON ic.unit_standard = unit.code
 		LEFT JOIN ic_group AS ic_group ON ic_group.code = ic.group_main
 		WHERE COALESCE(ic_barcode.barcode, '') <> ''
-		ORDER BY ic.code LIMIT 2
+		ORDER BY ic.code
 		) AS temp1
 	`)
 	if err != nil {

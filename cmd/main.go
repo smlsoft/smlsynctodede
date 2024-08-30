@@ -24,10 +24,10 @@ func main() {
 	}
 
 	/// ใช้ป้อน config
-	// err = utils.UpdateConfig(configPath)
-	// if err != nil {
-	// 	log.Fatalf("Error updating config: %v", err)
-	// }
+	err = utils.UpdateConfig(configPath)
+	if err != nil {
+		log.Fatalf("Error updating config: %v", err)
+	}
 
 	err = config.LoadConfig(configPath)
 	if err != nil {
