@@ -42,7 +42,7 @@ var PartServices = []PartService{
 	},
 	{
 		ServiceName: "productbarcode",
-		PartName:    "product/barcode/bulk",
+		PartName:    "product/barcode/import",
 	},
 }
 
