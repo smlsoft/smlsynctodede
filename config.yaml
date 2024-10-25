@@ -4,7 +4,7 @@ database:
   user: postgres
   password: sml
 api:
-  key: a6a3350e67af9d071b557c7180573f48052d057fc978b319902df6045207bc8c
+  key: ad5fec6778d9abf94de906992f0768dd1e5c6fc6502826ce1bf3cb584abe5d30
   base_url: https://api.dev.dedepos.com/
 databases:
 - name: data03

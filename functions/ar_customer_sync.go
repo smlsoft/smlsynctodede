@@ -8,6 +8,7 @@ import (
 	"smlsynctodede/logging"
 	"smlsynctodede/models"
 	"smlsynctodede/utils"
+	"strconv"
 	"time"
 )
 
@@ -29,12 +30,22 @@ func SyncArCustomerToMongoDB(databases models.DatabaseModel, apiKey string) erro
 	// Step 2: Query data from PostgreSQL
 	stepStart = time.Now()
 	rows, err := db.Query(`
-        SELECT 
-            code, 
-            name_1
-        FROM 
-            ar_customer 
-    `)
+		SELECT 
+		a.code
+		,a.name_1
+		,a.ar_status
+		,b.tax_id
+		,b.branch_type
+		,b.branch_code
+		,a.email
+		,b.credit_day
+		,case when (select count(ar_code) from ar_dealer where a.code = ar_dealer.ar_code) > 0 then 1 else 0 end as member_status 
+		,a.address
+		,a.telephone
+		FROM ar_customer a,ar_customer_detail b
+		WHERE a.code = b.ar_code
+		ORDER BY a.code
+		`)
 	if err != nil {
 		logging.LogError(fmt.Sprintf("Error querying PostgreSQL for table %s", tableName), err)
 		return err
@@ -46,23 +57,44 @@ func SyncArCustomerToMongoDB(databases models.DatabaseModel, apiKey string) erro
 	stepStart = time.Now()
 	var debtors []models.MongoDebtorModel
 	for rows.Next() {
-		var code, name sql.NullString
-		err := rows.Scan(&code, &name)
+		var code, name, arStatus, taxId, branchType, branchCode, email, creditDay, memberStatus, address, telephone sql.NullString
+		err := rows.Scan(&code, &name, &arStatus, &taxId, &branchType, &branchCode, &email, &creditDay, &memberStatus, &address, &telephone)
 		if err != nil {
 			log.Printf("Error scanning row for table %s: %v", tableName, err)
 			continue
 		}
 
+		personalType := 1 // Default to 1 (บุคคลธรรมดา)
+		if arStatus.String == "1" {
+			personalType = 2 // Set to 2 (นิติบุคคล) if ar_status is 1
+		}
+
+		customerType := 1 // Default to 1 (สำนักงานใหญ่)
+		branchNumber := "00000"
+		if branchType.String == "1" {
+			customerType = 2 // Set to 2 (สาขา) if branch_type is 1
+			branchNumber = branchCode.String
+		}
+		creditDayInt, _ := strconv.Atoi(creditDay.String)
+		isMember := memberStatus.String == "1"
+
 		debtor := models.MongoDebtorModel{
-			Code: code.String,
-			Names: []models.LanguageNameModel{
-				{
-					Code:     "th",
-					Name:     name.String,
-					Isauto:   false,
-					Isdelete: false,
-				},
+			Code:         code.String,
+			Names:        []models.LanguageNameModel{{Code: "th", Name: name.String, Isauto: false, Isdelete: false}},
+			PersonalType: personalType,
+			TaxId:        taxId.String,
+			CustomerType: customerType,
+			BranchNumber: branchNumber,
+			Email:        email.String,
+			CreditDay:    creditDayInt,
+			IsMember:     isMember,
+			AddressForBilling: models.CustomerAddressModel{
+				Contactnames: []models.LanguageNameModel{{Code: "th", Name: name.String, Isauto: false, Isdelete: false}},
+				Address:      []string{address.String},
+				Phoneprimary: telephone.String,
 			},
+			Groups: []string{},
+			Images: []string{},
 		}
 
 		debtors = append(debtors, debtor)
