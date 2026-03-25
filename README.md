@@ -48,36 +48,21 @@ databases:
 
 ### ภาพรวม
 
+Image ถูก build และ push ขึ้น GitHub Container Registry อัตโนมัติทุกครั้งที่ push code ขึ้น `main`
+
 ```text
-เครื่อง Dev                          Server ลูกค้า
-─────────────────                    ─────────────────
-docker build
-    ↓
-docker save → smlsynctodede.tar ───→ docker load
-                                         ↓
-                                     docker compose run
-                                         ↓
-                                     sync ข้อมูล → API
+Push code → GitHub Actions → build image → ghcr.io/smlsoft/smlsynctodede:latest
 ```
+
+ทีมที่ติดตั้งบน server ไม่ต้องมี source code ไม่ต้อง login แค่มี Docker ก็รันได้เลย
 
 ### โฟลเดอร์ที่ส่งให้ทีม
 
 ```text
 docker/
-├── smlsynctodede.tar  ← image โปรแกรมทั้งหมด
 ├── docker-compose.yml ← config การรัน
 ├── config.yaml        ← แก้ให้ตรงกับ server ลูกค้า
 └── sync_log.txt       ← ไฟล์เปล่าสำหรับเก็บ log
-```
-
-### Build และ Export image (ทำบนเครื่อง Dev)
-
-```bash
-# 1. build image
-docker build -f docker/Dockerfile -t smlsynctodede:latest .
-
-# 2. export เป็นไฟล์ .tar
-docker save smlsynctodede:latest -o docker/smlsynctodede.tar
 ```
 
 ### ติดตั้งบน Server (ทีมที่รับไป)
@@ -85,29 +70,26 @@ docker save smlsynctodede:latest -o docker/smlsynctodede.tar
 #### ขั้นที่ 1 — copy โฟลเดอร์ docker/ ขึ้น server
 
 ```bash
-scp -r docker/ user@server:/opt/smlsynctodede
+ssh user@server "mkdir -p ~/data/smlsynctodede"
+scp -r docker/ user@server:~/data/smlsynctodede
 ```
 
-#### ขั้นที่ 2 — โหลด image เข้า Docker (ครั้งแรกครั้งเดียว)
+#### ขั้นที่ 2 — แก้ config ให้ตรงกับ server ลูกค้า
 
 ```bash
-cd /opt/smlsynctodede
-docker load -i smlsynctodede.tar
-```
-
-#### ขั้นที่ 3 — แก้ config ให้ตรงกับ server ลูกค้า
-
-```bash
+cd ~/data/smlsynctodede
 nano config.yaml
 ```
 
-#### ขั้นที่ 4 — รัน sync
+#### ขั้นที่ 3 — รัน sync
 
 ```bash
 docker compose run --rm smlsynctodede
 ```
 
-#### ขั้นที่ 5 — ดู log
+Docker จะ pull image จาก `ghcr.io/smlsoft/smlsynctodede:latest` อัตโนมัติครับ
+
+#### ขั้นที่ 4 — ดู log
 
 ```bash
 cat sync_log.txt
@@ -115,13 +97,13 @@ cat sync_log.txt
 
 ### อัปเดตโปรแกรม
 
-```bash
-# บนเครื่อง Dev: build และ export ใหม่
-docker build -f docker/Dockerfile -t smlsynctodede:latest .
-docker save smlsynctodede:latest -o docker/smlsynctodede.tar
+Push code ขึ้น GitHub ตามปกติ GitHub Actions จะ build image ใหม่ให้อัตโนมัติ
 
-# บน Server: โหลด image ใหม่
-docker load -i smlsynctodede.tar
+บน server รันเพื่อดึง image ใหม่:
+
+```bash
+docker compose pull
+docker compose run --rm smlsynctodede
 ```
 
 ---
@@ -133,4 +115,4 @@ docker load -i smlsynctodede.tar
 | Server ต้องติดตั้ง Docker ก่อน | `docker` และ `docker compose` |
 | container ลบตัวเองหลังรัน | เพราะใช้ `--rm` |
 | log เก็บไว้ใน `sync_log.txt` | ดูได้หลังรันเสร็จ |
-| image size | ~8MB |
+| image | `ghcr.io/smlsoft/smlsynctodede:latest` |
