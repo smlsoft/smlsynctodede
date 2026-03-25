@@ -12,6 +12,7 @@ import (
 	"smlsynctodede/logging"
 	"smlsynctodede/models"
 	"smlsynctodede/utils"
+	"sync"
 	"time"
 
 	_ "github.com/lib/pq"
@@ -23,19 +24,11 @@ func main() {
 		log.Fatalf("Error finding config: %v", err)
 	}
 
-	/// ใช้ป้อน config
-	// err = utils.UpdateConfig(configPath)
-	// if err != nil {
-	// 	log.Fatalf("Error updating config: %v", err)
-	// }
-
-	err = config.LoadConfig(configPath)
-	if err != nil {
+	if err := config.LoadConfig(configPath); err != nil {
 		log.Fatalf("Error loading config: %v", err)
 	}
 
-	err = database.TestPostgresConnection(config.AppConfig)
-	if err != nil {
+	if err := database.TestPostgresConnection(config.AppConfig); err != nil {
 		log.Fatalf("Database connection test failed: %v", err)
 	}
 
@@ -46,20 +39,15 @@ func main() {
 	}
 	defer logFile.Close()
 
-	multiWriter := io.MultiWriter(os.Stdout, logFile)
-	log.SetOutput(multiWriter)
+	log.SetOutput(io.MultiWriter(os.Stdout, logFile))
 
-	fmt.Println("Starting synchronization process. Please wait...")
-	fmt.Printf("Logs will be displayed here and saved to %s\n", logPath)
+	fmt.Printf("Starting synchronization process. Logs saved to %s\n", logPath)
 
 	timeStart := time.Now()
 	log.Printf("%s=== Start synchronization process ===%s", logging.ColorGreen, logging.ColorReset)
-	log.Printf("%sStart Time: %s%s%s", logging.ColorCyan, timeStart.Format("2006-01-02 15:04:05.000"), logging.ColorCyan, logging.ColorReset)
+	log.Printf("%sStart Time: %s%s", logging.ColorCyan, timeStart.Format("2006-01-02 15:04:05.000"), logging.ColorReset)
 
 	logging.InitResults()
-
-	stopChan := make(chan bool)
-	go utils.StartLoadingAnimation("Sync data", stopChan, ": ")
 
 	syncFunctions := []struct {
 		name     string
@@ -71,21 +59,37 @@ func main() {
 	}
 
 	for _, dbName := range config.GetDatabaseList() {
+		var wg sync.WaitGroup
+		errChan := make(chan error, len(syncFunctions))
+
 		for _, syncFunc := range syncFunctions {
-			err := syncFunc.function(models.DatabaseModel{DatabaseName: dbName}, config.AppConfig.API.Key)
+			wg.Add(1)
+			go func(sf struct {
+				name     string
+				function func(models.DatabaseModel, string) error
+			}, db string) {
+				defer wg.Done()
+				if err := sf.function(models.DatabaseModel{DatabaseName: db}, config.AppConfig.API.Key); err != nil {
+					log.Printf("%sError in %s sync: %v%s", logging.ColorRed, sf.name, err, logging.ColorReset)
+					errChan <- err
+				}
+			}(syncFunc, dbName)
+		}
+
+		wg.Wait()
+		close(errChan)
+
+		for err := range errChan {
 			if err != nil {
-				log.Printf("%sError in %s sync: %v%s", logging.ColorRed, syncFunc.name, err, logging.ColorReset)
-				// Optionally, you can break here if you want to stop on first error
-				// break
+				log.Printf("%sSync completed with errors for database %s%s", logging.ColorYellow, dbName, logging.ColorReset)
+				break
 			}
 		}
 	}
 
-	stopChan <- true // Stop the loading animation
-
 	timeStop := time.Now()
 	log.Printf("%s=== Synchronization process completed ===%s", logging.ColorGreen, logging.ColorReset)
-	log.Printf("%sTotal Time: %s%.3f seconds%s", logging.ColorYellow, logging.ColorReset, timeStop.Sub(timeStart).Seconds(), logging.ColorReset)
+	log.Printf("%sTotal Time: %.3f seconds%s", logging.ColorYellow, timeStop.Sub(timeStart).Seconds(), logging.ColorReset)
 
 	logging.PrintSummary(timeStart, timeStop)
 

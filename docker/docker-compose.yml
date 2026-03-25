@@ -1,0 +1,6 @@
+services:
+  smlsynctodede:
+    image: smlsynctodede:latest
+    volumes:
+      - ./config.yaml:/app/config.yaml
+      - ./sync_log.txt:/app/sync_log.txt

@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 
 	"gopkg.in/yaml.v2"
@@ -32,38 +33,50 @@ type PartService struct {
 var AppConfig Config
 
 var PartServices = []PartService{
-	{
-		ServiceName: "creditor",
-		PartName:    "debtaccount/creditor/bulk",
-	},
-	{
-		ServiceName: "debtor",
-		PartName:    "debtaccount/debtor/bulk",
-	},
-	{
-		ServiceName: "productbarcode",
-		PartName:    "product/barcode/import",
-	},
+	{ServiceName: "creditor", PartName: "debtaccount/creditor/bulk"},
+	{ServiceName: "debtor", PartName: "debtaccount/debtor/bulk"},
+	{ServiceName: "productbarcode", PartName: "product/barcode/import"},
 }
 
 func LoadConfig(filename string) error {
 	content, err := os.ReadFile(filename)
 	if err != nil {
-		return err
+		return fmt.Errorf("cannot read config file: %w", err)
 	}
 
-	err = yaml.Unmarshal(content, &AppConfig)
-	if err != nil {
-		return err
+	if err := yaml.Unmarshal(content, &AppConfig); err != nil {
+		return fmt.Errorf("cannot parse config file: %w", err)
 	}
 
+	return validateConfig(AppConfig)
+}
+
+func validateConfig(cfg Config) error {
+	if cfg.Database.Host == "" {
+		return fmt.Errorf("config: database.host is required")
+	}
+	if cfg.Database.Port == 0 {
+		return fmt.Errorf("config: database.port is required")
+	}
+	if cfg.Database.User == "" {
+		return fmt.Errorf("config: database.user is required")
+	}
+	if cfg.API.Key == "" {
+		return fmt.Errorf("config: api.key is required")
+	}
+	if cfg.API.BaseURL == "" {
+		return fmt.Errorf("config: api.base_url is required")
+	}
+	if len(cfg.Databases) == 0 {
+		return fmt.Errorf("config: at least one database must be configured")
+	}
 	return nil
 }
 
 func GetDatabaseList() []string {
-	var dbList []string
-	for _, db := range AppConfig.Databases {
-		dbList = append(dbList, db.Name)
+	names := make([]string, len(AppConfig.Databases))
+	for i, db := range AppConfig.Databases {
+		names[i] = db.Name
 	}
-	return dbList
+	return names
 }

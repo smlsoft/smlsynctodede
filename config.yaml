@@ -4,7 +4,7 @@ database:
   user: postgres
   password: sml
 api:
-  key: ad5fec6778d9abf94de906992f0768dd1e5c6fc6502826ce1bf3cb584abe5d30
+  key: 72b227cefd009d5cb059498bee433fe97eb2714a12796a94b89ff2c9f5ac59da
   base_url: https://api.dev.dedepos.com/
 databases:
-- name: data03
+- name: tires

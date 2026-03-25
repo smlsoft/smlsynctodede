@@ -15,9 +15,9 @@ func TestPostgresConnection(cfg config.Config) error {
 		if err != nil {
 			return fmt.Errorf("error opening connection to %s: %v", db.Name, err)
 		}
-		defer testDB.Close()
 
 		err = testDB.Ping()
+		testDB.Close()
 		if err != nil {
 			return fmt.Errorf("error connecting to %s: %v", db.Name, err)
 		}

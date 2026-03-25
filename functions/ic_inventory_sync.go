@@ -25,29 +25,36 @@ func SyncIcInventoryToMongoDB(databases models.DatabaseModel, apiKey string) err
 		return err
 	}
 	defer db.Close()
+	if err := db.Ping(); err != nil {
+		logging.LogError(fmt.Sprintf("Error pinging PostgreSQL for table %s", tableName), err)
+		return err
+	}
 	log.Printf("Step 1: Connected to PostgreSQL (%.2f seconds)", time.Since(stepStart).Seconds())
 
 	// Step 2: Query data from PostgreSQL
+	// Fixed CASE logic: OR -> AND to correctly fallback price_0 only when price=0 AND price_0 is non-empty/non-zero
 	stepStart = time.Now()
 	rows, err := db.Query(`
 		SELECT code, barcode, unit_code, unit_name, item_type, drink_type, tax_type, have_point, ic_name, group_main, group_name,
-		CASE WHEN price <> 0 THEN price 
-		WHEN COALESCE(price_0,'') <> '' OR price_0 <> '0' THEN CAST(COALESCE(NULLIF(price_0, ''), '0') AS numeric) ELSE 0 END AS price,
+		CASE WHEN price <> 0 THEN price
+		WHEN COALESCE(price_0, '') <> '' AND price_0 <> '0' THEN CAST(COALESCE(NULLIF(price_0, ''), '0') AS numeric)
+		ELSE 0 END AS price,
 		price_member
-		FROM (SELECT ic.code, ic_barcode.barcode, ic_barcode.unit_code AS unit_code, 
-		(SELECT name_1 FROM ic_unit WHERE ic_unit.code = ic_barcode.unit_code) AS unit_name,
-		ic.item_type, ic.drink_type, ic.tax_type, ic_detail.have_point,
-		ic.name_1 AS ic_name, ic.group_main, ic_group.name_1 AS group_name,
-		ic_barcode.price, ic_barcode.price_member, ic_price.price_0
-		FROM ic_inventory AS ic
-		LEFT JOIN ic_inventory_detail AS ic_detail ON ic.code = ic_detail.ic_code
-		LEFT JOIN ic_inventory_barcode AS ic_barcode ON ic.code = ic_barcode.ic_code
-		LEFT JOIN ic_inventory_price_formula AS ic_price ON ic_price.ic_code = ic_barcode.ic_code AND ic_price.unit_code = ic_barcode.unit_code
-		LEFT JOIN ic_unit_use AS ic_unit ON ic.code = ic_unit.ic_code AND ic_barcode.ic_code = ic_unit.ic_code AND ic_barcode.unit_code = ic_unit.code
-		LEFT JOIN ic_unit AS unit ON ic.unit_standard = unit.code
-		LEFT JOIN ic_group AS ic_group ON ic_group.code = ic.group_main
-		WHERE COALESCE(ic_barcode.barcode, '') <> ''
-		ORDER BY ic.code
+		FROM (
+			SELECT ic.code, ic_barcode.barcode, ic_barcode.unit_code AS unit_code,
+			(SELECT name_1 FROM ic_unit WHERE ic_unit.code = ic_barcode.unit_code) AS unit_name,
+			ic.item_type, ic.drink_type, ic.tax_type, ic_detail.have_point,
+			ic.name_1 AS ic_name, ic.group_main, ic_group.name_1 AS group_name,
+			ic_barcode.price, ic_barcode.price_member, ic_price.price_0
+			FROM ic_inventory AS ic
+			LEFT JOIN ic_inventory_detail AS ic_detail ON ic.code = ic_detail.ic_code
+			LEFT JOIN ic_inventory_barcode AS ic_barcode ON ic.code = ic_barcode.ic_code
+			LEFT JOIN ic_inventory_price_formula AS ic_price ON ic_price.ic_code = ic_barcode.ic_code AND ic_price.unit_code = ic_barcode.unit_code
+			LEFT JOIN ic_unit_use AS ic_unit ON ic.code = ic_unit.ic_code AND ic_barcode.ic_code = ic_unit.ic_code AND ic_barcode.unit_code = ic_unit.code
+			LEFT JOIN ic_unit AS unit ON ic.unit_standard = unit.code
+			LEFT JOIN ic_group AS ic_group ON ic_group.code = ic.group_main
+			WHERE COALESCE(ic_barcode.barcode, '') <> ''
+			ORDER BY ic.code
 		) AS temp1
 	`)
 	if err != nil {
@@ -67,20 +74,16 @@ func SyncIcInventoryToMongoDB(databases models.DatabaseModel, apiKey string) err
 		var icName, groupMain, groupName sql.NullString
 		var price, priceMember sql.NullFloat64
 
-		err := rows.Scan(&code, &barcode, &unitCode, &unitName, &itemType, &drinkType, &taxType, &havePoint, &icName, &groupMain, &groupName, &price, &priceMember)
-		if err != nil {
+		if err := rows.Scan(&code, &barcode, &unitCode, &unitName, &itemType, &drinkType, &taxType, &havePoint, &icName, &groupMain, &groupName, &price, &priceMember); err != nil {
 			log.Printf("Error scanning row for table %s: %v", tableName, err)
 			continue
 		}
 
-		inventory := models.MongoProductBarcodeModel{
+		inventories = append(inventories, models.MongoProductBarcodeModel{
 			Barcode:      barcode.String,
 			ItemUnitCode: unitCode.String,
 			ItemUnitNames: []models.LanguageNameModel{
-				{
-					Code: "th",
-					Name: unitName.String,
-				},
+				{Code: "th", Name: unitName.String},
 			},
 			ItemType:   int(itemType.Int64),
 			FoodType:   int(drinkType.Int64),
@@ -88,31 +91,21 @@ func SyncIcInventoryToMongoDB(databases models.DatabaseModel, apiKey string) err
 			IsSumPoint: havePoint.Bool,
 			ItemCode:   code.String,
 			Names: []models.LanguageNameModel{
-				{
-					Code: "th",
-					Name: icName.String,
-				},
+				{Code: "th", Name: icName.String},
 			},
 			GroupCode: groupMain.String,
 			GroupNames: []models.LanguageNameModel{
-				{
-					Code: "th",
-					Name: groupName.String,
-				},
+				{Code: "th", Name: groupName.String},
 			},
 			Prices: []models.PriceModel{
-				{
-					KeyNumber: 1,
-					Price:     price.Float64,
-				},
-				{
-					KeyNumber: 2,
-					Price:     priceMember.Float64,
-				},
+				{KeyNumber: 1, Price: price.Float64},
+				{KeyNumber: 2, Price: priceMember.Float64},
 			},
-		}
-
-		inventories = append(inventories, inventory)
+		})
+	}
+	if err := rows.Err(); err != nil {
+		logging.LogError(fmt.Sprintf("Error iterating rows for table %s", tableName), err)
+		return err
 	}
 	log.Printf("Step 3: Processed %d items (%.2f seconds)", len(inventories), time.Since(stepStart).Seconds())
 
@@ -121,41 +114,32 @@ func SyncIcInventoryToMongoDB(databases models.DatabaseModel, apiKey string) err
 	batchSize := 50
 	totalItems := len(inventories)
 	for i := 0; i < totalItems; i += batchSize {
-		batchStart := time.Now()
 		end := i + batchSize
 		if end > totalItems {
 			end = totalItems
 		}
-		batch := inventories[i:end]
+		batchStart := time.Now()
+
+		responseBody, err := utils.SendDataToAPI("productbarcode", apiKey, inventories[i:end])
+		if err != nil {
+			logging.LogError(fmt.Sprintf("Error sending batch %d-%d for table %s", i+1, end, tableName), err)
+			return err
+		}
 
 		var apiResponse struct {
 			Success bool   `json:"success"`
 			Message string `json:"message"`
 		}
-
-		responseBody, err := utils.SendDataToAPI("productbarcode", apiKey, batch)
-		if err != nil {
-			if err.Error() == "API request failed with status code 401: {\"message\":\"Token Invalid.\",\"success\":false}" {
-				logging.LogError("Authentication failed. Please check your API key.", fmt.Errorf(string(responseBody)))
-				return err // Return error to stop the synchronization process
-			}
-			logging.LogError(fmt.Sprintf("Error sending data to API for table %s (batch %d-%d)", tableName, i+1, end), err)
-			return err // Return error to stop the synchronization process
-		}
-
-		err = json.Unmarshal(responseBody, &apiResponse)
-		if err != nil {
+		if err := json.Unmarshal(responseBody, &apiResponse); err != nil {
 			logging.LogError(fmt.Sprintf("Error parsing API response for table %s (batch %d-%d)", tableName, i+1, end), err)
 			continue
 		}
-
 		if !apiResponse.Success {
-			logging.LogError(fmt.Sprintf("API request failed for table %s (batch %d-%d)", tableName, i+1, end), fmt.Errorf(apiResponse.Message))
+			logging.LogError(fmt.Sprintf("API reported failure for table %s (batch %d-%d)", tableName, i+1, end), fmt.Errorf(apiResponse.Message))
 			continue
 		}
 
-		batchDuration := time.Since(batchStart)
-		log.Printf("Sent batch %d-%d of %d for table %s (%.2f seconds)", i+1, end, totalItems, tableName, batchDuration.Seconds())
+		log.Printf("Sent batch %d-%d of %d for table %s (%.2f seconds)", i+1, end, totalItems, tableName, time.Since(batchStart).Seconds())
 	}
 	log.Printf("Step 4: Sent all data to API (%.2f seconds)", time.Since(stepStart).Seconds())
 

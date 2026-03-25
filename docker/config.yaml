@@ -1,0 +1,10 @@
+database:
+  host: 192.168.2.236
+  port: 5432
+  user: postgres
+  password: sml
+api:
+  key: 72b227cefd009d5cb059498bee433fe97eb2714a12796a94b89ff2c9f5ac59da
+  base_url: https://api.dev.dedepos.com/
+databases:
+- name: tires

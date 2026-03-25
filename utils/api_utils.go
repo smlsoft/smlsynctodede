@@ -2,12 +2,18 @@ package utils
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"smlsynctodede/config"
+	"time"
 )
+
+var httpClient = &http.Client{
+	Timeout: 30 * time.Second,
+}
 
 func GetFullAPIURL(serviceName string) string {
 	for _, part := range config.PartServices {
@@ -20,13 +26,19 @@ func GetFullAPIURL(serviceName string) string {
 
 func SendDataToAPI(serviceName string, apiKey string, data interface{}) ([]byte, error) {
 	apiURL := GetFullAPIURL(serviceName)
+	if apiURL == "" {
+		return nil, fmt.Errorf("unknown service name: %s", serviceName)
+	}
 
 	jsonData, err := json.Marshal(data)
 	if err != nil {
 		return nil, fmt.Errorf("error marshalling data: %v", err)
 	}
 
-	req, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(jsonData))
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, apiURL, bytes.NewBuffer(jsonData))
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %v", err)
 	}
@@ -34,8 +46,7 @@ func SendDataToAPI(serviceName string, apiKey string, data interface{}) ([]byte,
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("x-api-key", apiKey)
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	resp, err := httpClient.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %v", err)
 	}
@@ -46,8 +57,12 @@ func SendDataToAPI(serviceName string, apiKey string, data interface{}) ([]byte,
 		return nil, fmt.Errorf("error reading response: %v", err)
 	}
 
+	if resp.StatusCode == http.StatusUnauthorized {
+		return body, fmt.Errorf("API authentication failed (401): %s", string(body))
+	}
+
 	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
-		return nil, fmt.Errorf("API request failed with status code %d: %s", resp.StatusCode, string(body))
+		return body, fmt.Errorf("API request failed with status code %d: %s", resp.StatusCode, string(body))
 	}
 
 	return body, nil

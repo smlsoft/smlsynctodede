@@ -24,17 +24,15 @@ func SyncApSupplierToMongoDB(databases models.DatabaseModel, apiKey string) erro
 		return err
 	}
 	defer db.Close()
+	if err := db.Ping(); err != nil {
+		logging.LogError(fmt.Sprintf("Error pinging PostgreSQL for table %s", tableName), err)
+		return err
+	}
 	log.Printf("Step 1: Connected to PostgreSQL (%.2f seconds)", time.Since(stepStart).Seconds())
 
 	// Step 2: Query data from PostgreSQL
 	stepStart = time.Now()
-	rows, err := db.Query(`
-        SELECT 
-            code, 
-            name_1
-        FROM 
-            ap_supplier 
-    `)
+	rows, err := db.Query(`SELECT code, name_1 FROM ap_supplier`)
 	if err != nil {
 		logging.LogError(fmt.Sprintf("Error querying PostgreSQL for table %s", tableName), err)
 		return err
@@ -47,25 +45,20 @@ func SyncApSupplierToMongoDB(databases models.DatabaseModel, apiKey string) erro
 	var creditors []models.MongoCreditorModel
 	for rows.Next() {
 		var code, name sql.NullString
-		err := rows.Scan(&code, &name)
-		if err != nil {
+		if err := rows.Scan(&code, &name); err != nil {
 			log.Printf("Error scanning row for table %s: %v", tableName, err)
 			continue
 		}
-
-		creditor := models.MongoCreditorModel{
+		creditors = append(creditors, models.MongoCreditorModel{
 			Code: code.String,
 			Names: []models.LanguageNameModel{
-				{
-					Code:     "th",
-					Name:     name.String,
-					Isauto:   false,
-					Isdelete: false,
-				},
+				{Code: "th", Name: name.String, Isauto: false, Isdelete: false},
 			},
-		}
-
-		creditors = append(creditors, creditor)
+		})
+	}
+	if err := rows.Err(); err != nil {
+		logging.LogError(fmt.Sprintf("Error iterating rows for table %s", tableName), err)
+		return err
 	}
 	log.Printf("Step 3: Processed %d items (%.2f seconds)", len(creditors), time.Since(stepStart).Seconds())
 
@@ -74,25 +67,18 @@ func SyncApSupplierToMongoDB(databases models.DatabaseModel, apiKey string) erro
 	batchSize := 50
 	totalItems := len(creditors)
 	for i := 0; i < totalItems; i += batchSize {
-		batchStart := time.Now()
 		end := i + batchSize
 		if end > totalItems {
 			end = totalItems
 		}
-		batch := creditors[i:end]
+		batchStart := time.Now()
 
-		responseBody, err := utils.SendDataToAPI("creditor", apiKey, batch)
+		_, err := utils.SendDataToAPI("creditor", apiKey, creditors[i:end])
 		if err != nil {
-			if err.Error() == "API request failed with status code 401: {\"message\":\"Token Invalid.\",\"success\":false}" {
-				logging.LogError("Authentication failed. Please check your API key.", fmt.Errorf(string(responseBody)))
-				return err // Return error to stop the synchronization process
-			}
-			logging.LogError(fmt.Sprintf("Error sending data to API for table %s (batch %d-%d)", tableName, i+1, end), err)
-			return err // Return error to stop the synchronization process
+			logging.LogError(fmt.Sprintf("Error sending batch %d-%d for table %s", i+1, end, tableName), err)
+			return err
 		}
-
-		batchDuration := time.Since(batchStart)
-		log.Printf("Sent batch %d-%d of %d for table %s (%.2f seconds)", i+1, end, totalItems, tableName, batchDuration.Seconds())
+		log.Printf("Sent batch %d-%d of %d for table %s (%.2f seconds)", i+1, end, totalItems, tableName, time.Since(batchStart).Seconds())
 	}
 	log.Printf("Step 4: Sent all data to API (%.2f seconds)", time.Since(stepStart).Seconds())
 
