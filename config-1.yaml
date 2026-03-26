@@ -1,5 +1,5 @@
 database:
-  host: 192.168.2.236
+  host: c03-cloud_db3-1
   port: 5432
   user: postgres
   password: sml
@@ -7,4 +7,4 @@ api:
   key: YOUR_API_KEY
   base_url: https://api.dedepos.com/
 databases:
-- name: tires
+  - name: C04124_1
