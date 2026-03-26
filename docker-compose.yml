@@ -1,6 +1,6 @@
 services:
   smlsynctodede:
-    build: .
+    image: ghcr.io/smlsoft/smlsynctodede:latest
     volumes:
       - ./config.yaml:/app/config.yaml
       - ./sync_log.txt:/app/sync_log.txt

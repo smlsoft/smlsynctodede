@@ -56,10 +56,10 @@ Push code → GitHub Actions → build image → ghcr.io/smlsoft/smlsynctodede:l
 
 ทีมที่ติดตั้งบน server ไม่ต้องมี source code ไม่ต้อง login แค่มี Docker ก็รันได้เลย
 
-### โฟลเดอร์ที่ส่งให้ทีม
+### ไฟล์ที่ส่งให้ทีม
 
 ```text
-docker/
+smlsynctodede/
 ├── docker-compose.yml ← config การรัน
 ├── config.yaml        ← แก้ให้ตรงกับ server ลูกค้า
 └── sync_log.txt       ← ไฟล์เปล่าสำหรับเก็บ log
@@ -67,11 +67,11 @@ docker/
 
 ### ติดตั้งบน Server (ทีมที่รับไป)
 
-#### ขั้นที่ 1 — copy โฟลเดอร์ docker/ ขึ้น server
+#### ขั้นที่ 1 — copy ไฟล์ขึ้น server
 
 ```bash
 ssh user@server "mkdir -p ~/data/smlsynctodede"
-scp -r docker/ user@server:~/data/smlsynctodede
+scp docker-compose.yml config.yaml sync_log.txt user@server:~/data/smlsynctodede
 ```
 
 #### ขั้นที่ 2 — แก้ config ให้ตรงกับ server ลูกค้า
