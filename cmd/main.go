@@ -56,6 +56,7 @@ func main() {
 		{"ap_supplier", functions.SyncApSupplierToMongoDB},
 		{"ar_customer", functions.SyncArCustomerToMongoDB},
 		{"ic_inventory", functions.SyncIcInventoryToMongoDB},
+		{"ic_unit", functions.SyncIcUnitToMongoDB},
 	}
 
 	for _, dbName := range config.GetDatabaseList() {

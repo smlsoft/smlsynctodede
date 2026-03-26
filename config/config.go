@@ -36,6 +36,7 @@ var PartServices = []PartService{
 	{ServiceName: "creditor", PartName: "debtaccount/creditor/bulk"},
 	{ServiceName: "debtor", PartName: "debtaccount/debtor/bulk"},
 	{ServiceName: "productbarcode", PartName: "product/barcode/import"},
+	{ServiceName: "unit", PartName: "unit/bulk"},
 }
 
 func LoadConfig(filename string) error {

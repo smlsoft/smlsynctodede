@@ -31,15 +31,15 @@ GOOS=linux GOARCH=amd64 go build -o build/smlsynctodede cmd/main.go
 
 ```yaml
 database:
-  host: 192.168.x.x     # IP เครื่อง PostgreSQL
+  host: 192.168.x.x # IP เครื่อง PostgreSQL
   port: 5432
   user: postgres
   password: xxxxx
 api:
-  key: xxxxx             # API Key ของ DedePOS
+  key: xxxxx # API Key ของ DedePOS
   base_url: https://api.dedepos.com/
 databases:
-  - name: ชื่อ_database  # ชื่อ database ที่ต้องการ sync
+  - name: ชื่อ_database # ชื่อ database ที่ต้องการ sync
 ```
 
 ---
@@ -110,9 +110,9 @@ docker compose run --rm smlsynctodede
 
 ## หมายเหตุ
 
-| ข้อ | รายละเอียด |
-| --- | --- |
-| Server ต้องติดตั้ง Docker ก่อน | `docker` และ `docker compose` |
-| container ลบตัวเองหลังรัน | เพราะใช้ `--rm` |
-| log เก็บไว้ใน `sync_log.txt` | ดูได้หลังรันเสร็จ |
-| image | `ghcr.io/smlsoft/smlsynctodede:latest` |
+| ข้อ                            | รายละเอียด                             |
+| ------------------------------ | -------------------------------------- |
+| Server ต้องติดตั้ง Docker ก่อน | `docker` และ `docker compose`          |
+| container ลบตัวเองหลังรัน      | เพราะใช้ `--rm`                        |
+| log เก็บไว้ใน `sync_log.txt`   | ดูได้หลังรันเสร็จ                      |
+| image                          | `ghcr.io/smlsoft/smlsynctodede:latest` |
