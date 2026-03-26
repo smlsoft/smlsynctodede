@@ -50,6 +50,7 @@ func SyncIcUnitToMongoDB(databases models.DatabaseModel, apiKey string) error {
 			continue
 		}
 		units = append(units, models.MongoUnitModel{
+			UnitCode: code.String,
 			Names: []models.LanguageNameModel{
 				{Code: "th", Name: name.String, Isauto: false, Isdelete: false},
 			},
